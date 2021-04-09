@@ -1002,15 +1002,15 @@
     (pin "1" (uuid 8e22f20c-4d5d-4b30-8cb8-78dec39a56c6))
   )
 
-  (symbol (lib_id "Connector:Screw_Terminal_01x02") (at 22.86 31.75 180) (unit 1)
+  (symbol (lib_id "Connector:Screw_Terminal_01x02") (at 22.86 29.21 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 0049d02d-b2bd-4ae2-945f-14ed4f41e9f9)
     (property "Reference" "J1" (id 0) (at 24.892 24.5068 0))
     (property "Value" "Screw_Terminal_01x02" (id 1) (at 24.892 26.8055 0))
-    (property "Footprint" "TerminalBlock_RND:TerminalBlock_RND_205-00067_1x02_P7.50mm_Horizontal" (id 2) (at 22.86 31.75 0)
+    (property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal" (id 2) (at 22.86 29.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (id 3) (at 22.86 31.75 0)
+    (property "Datasheet" "~" (id 3) (at 22.86 29.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid bc033cbe-16c5-4442-a3bc-bb19913e2d2d))
@@ -1222,7 +1222,7 @@
       (reference "FL1") (unit 1) (value "Choke_Schaffner_RN102-0.3-02-12M") (footprint "Inductor_THT:Choke_Schaffner_RN102-04-14.0x14.0mm")
     )
     (path "/0049d02d-b2bd-4ae2-945f-14ed4f41e9f9"
-      (reference "J1") (unit 1) (value "Screw_Terminal_01x02") (footprint "TerminalBlock_RND:TerminalBlock_RND_205-00067_1x02_P7.50mm_Horizontal")
+      (reference "J1") (unit 1) (value "Screw_Terminal_01x02") (footprint "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal")
     )
     (path "/b4e9ba94-1e48-4e68-ad99-460f09cc50a2"
       (reference "PS1") (unit 1) (value "HLK-PM01") (footprint "Converter_ACDC:Converter_ACDC_HiLink_HLK-2Mxx")
