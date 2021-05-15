@@ -1231,7 +1231,7 @@
     (property "Value" "Conn_01x04" (id 1) (at 130.3021 38.3678 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Connector_Wire:SolderWire-0.1sqmm_1x04_P3.6mm_D0.4mm_OD1mm" (id 2) (at 128.27 35.56 0)
+    (property "Footprint" "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical" (id 2) (at 128.27 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 128.27 35.56 0)
@@ -1381,7 +1381,7 @@
       (reference "J1") (unit 1) (value "Screw_Terminal_01x02") (footprint "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal")
     )
     (path "/9f064d7b-2865-4666-8023-e90006907a35"
-      (reference "J2") (unit 1) (value "Conn_01x04") (footprint "Connector_Wire:SolderWire-0.1sqmm_1x04_P3.6mm_D0.4mm_OD1mm")
+      (reference "J2") (unit 1) (value "Conn_01x04") (footprint "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical")
     )
     (path "/b4e9ba94-1e48-4e68-ad99-460f09cc50a2"
       (reference "PS1") (unit 1) (value "HLK-PM01") (footprint "Converter_ACDC:Converter_ACDC_HiLink_HLK-PMxx")
