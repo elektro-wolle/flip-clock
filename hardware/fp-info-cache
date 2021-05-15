@@ -1,4 +1,4 @@
-19975538660687721
+19977159739236399
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -55614,6 +55614,13 @@ solder jumper open
 0
 5
 3
+KiCad
+TCRT5000
+TCRT5000
+Transistor
+0
+4
+4
 LED_SMD
 LED-APA102-2020
 http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf
