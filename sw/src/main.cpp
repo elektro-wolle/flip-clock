@@ -1,59 +1,45 @@
 #include <Arduino.h>
 
+// /EN auf D5, D5 = 14
+#define ENABLE 14
+// STEP auf D4 = 2
+#define STEP 2
+// DIR auf D3 = 0
+#define DIR 0
+
 void setup()
 {
-    pinMode(GPIO_NUM_12, OUTPUT);
-    pinMode(GPIO_NUM_14, OUTPUT);
-    pinMode(GPIO_NUM_27, OUTPUT);
-    pinMode(GPIO_NUM_26, OUTPUT);
+    pinMode(ENABLE, OUTPUT);
+    pinMode(STEP, OUTPUT);
+    pinMode(DIR, OUTPUT);
+    Serial.begin(115200);
 }
 
-typedef struct { 
-    bool a1;
-    bool a2;
-    bool b1;
-    bool b2;
-} outputs_t;
+void advance(int8_t amount)
+{
+    Serial.printf("begin\n");
+    digitalWrite(ENABLE, LOW);
+    delay(50);
+    digitalWrite(DIR, amount > 0 ? HIGH : LOW);
+    for (int x = 0; x < abs(amount); x++) {
+        digitalWrite(STEP, LOW);
 
-outputs_t steps[] = {
-    { true, true, true, false},
-    { true, false, true, false},
-    { true, false, true, true},
-    { true, false, false, true},
-    { true, true, false, true},
-    { false, true, false, true},
-    { false, true, true, true},
-    { false, true, true, false }
-};
+        for (int y = 0; y < 10; y++) {
+            digitalWrite(STEP, HIGH);
+            int x = analogRead(0);
+            if (x < 800)
+                Serial.printf("got %d\n", x);
+            delay(1);
+        }
+    }
 
-
-int8_t phase = 1;
-
-void advance(int8_t amount) {
-    digitalWrite(GPIO_NUM_12, steps[phase].a1);
-    digitalWrite(GPIO_NUM_14, steps[phase].a2);
-    digitalWrite(GPIO_NUM_27, steps[phase].b1);
-    digitalWrite(GPIO_NUM_26, steps[phase].b2);
-
-    delay(100);
-    digitalWrite(GPIO_NUM_12, LOW);
-    digitalWrite(GPIO_NUM_14, LOW);
-    digitalWrite(GPIO_NUM_27, LOW);
-    digitalWrite(GPIO_NUM_26, LOW);
-
-    delay(100);
-
-    phase+=amount;
-    while (phase < 0) { phase += 8;}
-    if (phase >= 8) { phase = phase % 8; }
+    delay(50);
+    digitalWrite(ENABLE, HIGH);
+    Serial.printf("end\n");
 }
- 
 
 void loop()
 {
-    delay(1500);
-    advance(-2);
-    advance(-2);
+    delay(1000);
+    advance(20);
 }
-
-
