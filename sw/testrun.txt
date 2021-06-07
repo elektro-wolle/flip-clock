@@ -1,0 +1,3166 @@
+05:07:
+
+begin
+[rep=19,min=22,delta=11,avg=1], [rep=34,min=26,delta=201,avg=60], 
+done after 34
+05:08:
+
+begin
+[rep=35,min=26,delta=225,avg=118], 
+done after 35
+05:09:
+
+begin
+[rep=34,min=26,delta=206,avg=83], 
+done after 34
+05:10:
+
+begin
+[rep=0,min=14,delta=11,avg=6], [rep=34,min=29,delta=21,avg=3], [rep=35,min=111,delta=152,avg=104], 
+done after 35
+05:11:
+
+begin
+[rep=16,min=16,delta=14,avg=3], [rep=22,min=12,delta=19,avg=7], [rep=27,min=21,delta=21,avg=3], [rep=38,min=27,delta=213,avg=68], 
+done after 38
+05:12:
+
+begin
+[rep=1,min=20,delta=12,avg=1], [rep=6,min=14,delta=17,avg=5], [rep=12,min=16,delta=16,avg=5], [rep=18,min=20,delta=14,avg=1], [rep=35,min=28,delta=60,avg=7], [rep=36,min=125,delta=126,avg=79], 
+done after 36
+05:13:
+
+begin
+[rep=32,min=28,delta=155,avg=25], 
+done after 32
+05:14:
+
+begin
+[rep=33,min=18,delta=236,avg=122], 
+done after 33
+05:15:
+
+begin
+[rep=37,min=21,delta=224,avg=139], 
+done after 37
+05:16:
+
+begin
+[rep=26,min=23,delta=12,avg=1], [rep=34,min=25,delta=244,avg=169], 
+done after 34
+05:17:
+
+begin
+[rep=35,min=26,delta=228,avg=158], 
+done after 35
+05:18:
+
+begin
+[rep=8,min=17,delta=12,avg=2], [rep=32,min=29,delta=215,avg=103], 
+done after 32
+05:19:
+
+begin
+[rep=35,min=25,delta=192,avg=44], 
+done after 35
+05:20:
+
+begin
+[rep=26,min=15,delta=16,avg=5], [rep=31,min=22,delta=11,avg=1], [rep=37,min=24,delta=18,avg=3], [rep=40,min=28,delta=131,avg=17], 
+done after 40
+05:21:
+
+begin
+[rep=3,min=16,delta=16,avg=2], [rep=8,min=16,delta=12,avg=2], [rep=14,min=13,delta=19,avg=5], [rep=20,min=21,delta=19,avg=3], [rep=25,min=20,delta=18,avg=5], [rep=33,min=27,delta=151,avg=27], 
+done after 33
+05:22:
+
+begin
+[rep=34,min=30,delta=204,avg=51], 
+done after 34
+05:23:
+
+begin
+[rep=35,min=30,delta=115,avg=19], 
+done after 35
+05:24:
+
+begin
+[rep=37,min=29,delta=224,avg=127], 
+done after 37
+05:25:
+
+begin
+[rep=33,min=27,delta=203,avg=102], 
+done after 33
+05:26:
+
+begin
+[rep=0,min=12,delta=11,avg=7], [rep=33,min=23,delta=160,avg=29], 
+done after 33
+05:27:
+
+begin
+[rep=36,min=25,delta=159,avg=31], 
+done after 36
+05:28:
+
+begin
+[rep=37,min=25,delta=60,avg=11], [rep=38,min=124,delta=128,avg=78], 
+done after 38
+05:29:
+
+begin
+[rep=12,min=18,delta=19,avg=4], [rep=17,min=17,delta=13,avg=4], [rep=23,min=25,delta=15,avg=3], [rep=28,min=25,delta=17,avg=3], [rep=34,min=28,delta=212,avg=108], 
+done after 34
+05:30:
+
+begin
+[rep=0,min=12,delta=12,avg=6], [rep=8,min=17,delta=21,avg=11], [rep=33,min=29,delta=227,avg=112], 
+done after 33
+05:31:
+
+begin
+[rep=34,min=29,delta=219,avg=135], 
+done after 34
+05:32:
+
+begin
+[rep=36,min=28,delta=225,avg=155], 
+done after 36
+05:33:
+
+begin
+[rep=34,min=14,delta=190,avg=49], 
+done after 34
+05:34:
+
+begin
+[rep=34,min=35,delta=212,avg=78], 
+done after 34
+05:35:
+
+begin
+[rep=33,min=29,delta=20,avg=9], [rep=34,min=112,delta=136,avg=85], 
+done after 34
+05:36:
+
+begin
+[rep=4,min=17,delta=13,avg=2], [rep=32,min=32,delta=210,avg=79], 
+done after 32
+05:37:
+
+begin
+[rep=37,min=30,delta=213,avg=150], 
+done after 37
+05:38:
+
+begin
+[rep=3,min=18,delta=11,avg=2], [rep=8,min=19,delta=16,avg=1], [rep=14,min=20,delta=17,avg=4], [rep=20,min=25,delta=12,avg=3], [rep=25,min=32,delta=17,avg=2], [rep=35,min=32,delta=158,avg=27], 
+done after 35
+05:39:
+
+begin
+[rep=34,min=35,delta=191,avg=82], 
+done after 34
+05:40:
+
+begin
+[rep=34,min=39,delta=211,avg=131], 
+done after 34
+05:41:
+
+begin
+[rep=32,min=26,delta=208,avg=100], 
+done after 32
+05:42:
+
+begin
+[rep=34,min=20,delta=91,avg=15], 
+done after 34
+05:43:
+
+begin
+[rep=39,min=20,delta=138,avg=24], 
+done after 39
+05:44:
+
+begin
+[rep=32,min=19,delta=207,avg=85], 
+done after 32
+05:45:
+
+begin
+[rep=0,min=12,delta=12,avg=7], [rep=33,min=26,delta=30,avg=6], [rep=34,min=112,delta=121,avg=79], 
+done after 34
+05:46:
+
+begin
+[rep=0,min=13,delta=16,avg=6], [rep=36,min=21,delta=223,avg=106], 
+done after 36
+05:47:
+
+begin
+[rep=3,min=15,delta=17,avg=2], [rep=9,min=14,delta=12,avg=3], [rep=15,min=17,delta=14,avg=1], [rep=20,min=15,delta=20,avg=5], [rep=26,min=22,delta=12,avg=3], [rep=32,min=27,delta=16,avg=2], [rep=35,min=26,delta=126,avg=21], 
+done after 35
+05:48:
+
+begin
+[rep=34,min=24,delta=221,avg=148], 
+done after 34
+05:49:
+
+begin
+[rep=33,min=21,delta=169,avg=36], 
+done after 33
+05:50:
+
+begin
+[rep=21,min=12,delta=19,avg=9], [rep=33,min=43,delta=198,avg=144], 
+done after 33
+05:51:
+
+begin
+[rep=36,min=10,delta=216,avg=126], 
+done after 36
+05:52:
+
+begin
+[rep=34,min=24,delta=200,avg=54], 
+done after 34
+05:53:
+
+begin
+[rep=34,min=14,delta=124,avg=21], 
+done after 34
+05:54:
+
+begin
+[rep=32,min=19,delta=155,avg=30], 
+done after 32
+05:55:
+
+begin
+[rep=35,min=24,delta=208,avg=74], 
+done after 35
+05:56:
+
+begin
+[rep=3,min=14,delta=11,avg=3], [rep=8,min=15,delta=11,avg=1], [rep=14,min=14,delta=20,avg=3], [rep=20,min=11,delta=13,avg=5], [rep=25,min=16,delta=19,avg=3], [rep=31,min=18,delta=19,avg=6], [rep=37,min=22,delta=219,avg=87], 
+done after 37
+05:57:
+
+begin
+[rep=0,min=8,delta=24,avg=12], [rep=36,min=29,delta=220,avg=159], 
+done after 36
+05:58:
+
+begin
+[rep=20,min=21,delta=11,avg=1], [rep=33,min=21,delta=232,avg=158], 
+done after 33
+05:59:
+
+begin
+[rep=33,min=25,delta=175,avg=42], 
+done after 33
+06:00:
+
+begin
+[rep=32,min=23,delta=210,avg=53], 
+done after 32
+06:01:
+
+begin
+[rep=35,min=20,delta=12,avg=8], [rep=36,min=54,delta=190,avg=132], 
+done after 36
+06:02:
+
+begin
+[rep=33,min=21,delta=19,avg=9], [rep=34,min=103,delta=145,avg=89], 
+done after 34
+06:03:
+
+begin
+[rep=34,min=23,delta=207,avg=140], 
+done after 34
+06:04:
+
+begin
+[rep=16,min=17,delta=11,avg=1], [rep=35,min=19,delta=53,avg=10], [rep=36,min=130,delta=119,avg=69], 
+done after 36
+06:05:
+
+begin
+[rep=8,min=15,delta=13,avg=2], [rep=14,min=14,delta=19,avg=3], [rep=19,min=15,delta=12,avg=1], [rep=25,min=11,delta=12,avg=4], [rep=30,min=20,delta=18,avg=1], [rep=33,min=15,delta=215,avg=147], 
+done after 33
+06:06:
+
+begin
+[rep=41,min=20,delta=197,avg=50], 
+done after 41
+06:07:
+
+begin
+[rep=32,min=21,delta=13,avg=7], [rep=33,min=90,delta=151,avg=103], 
+done after 33
+06:08:
+
+begin
+[rep=31,min=26,delta=209,avg=63], 
+done after 31
+06:09:
+
+begin
+[rep=35,min=23,delta=209,avg=128], 
+done after 35
+06:10:
+
+begin
+[rep=34,min=28,delta=24,avg=3], [rep=35,min=118,delta=144,avg=99], 
+done after 35
+06:11:
+
+begin
+[rep=36,min=26,delta=215,avg=74], 
+done after 36
+06:12:
+
+begin
+[rep=34,min=27,delta=201,avg=48], 
+done after 34
+06:13:
+
+begin
+[rep=35,min=26,delta=208,avg=100], 
+done after 35
+06:14:
+
+begin
+[rep=0,min=12,delta=18,avg=7], [rep=5,min=17,delta=11,avg=2], [rep=11,min=13,delta=13,avg=2], [rep=17,min=12,delta=19,avg=2], [rep=22,min=12,delta=16,avg=2], [rep=34,min=11,delta=159,avg=29], 
+done after 34
+06:15:
+
+begin
+[rep=38,min=16,delta=225,avg=122], 
+done after 38
+06:16:
+
+begin
+[rep=32,min=29,delta=73,avg=9], [rep=33,min=146,delta=129,avg=80], 
+done after 33
+06:17:
+
+begin
+[rep=34,min=26,delta=218,avg=90], 
+done after 34
+06:18:
+
+begin
+[rep=34,min=21,delta=186,avg=36], 
+done after 34
+06:19:
+
+begin
+[rep=35,min=27,delta=189,avg=40], 
+done after 35
+06:20:
+
+begin
+[rep=0,min=13,delta=11,avg=6], [rep=36,min=33,delta=216,avg=81], 
+done after 36
+06:21:
+
+begin
+[rep=33,min=22,delta=214,avg=129], 
+done after 33
+06:22:
+
+begin
+[rep=27,min=23,delta=12,avg=2], [rep=37,min=25,delta=121,avg=21], 
+done after 37
+06:23:
+
+begin
+[rep=2,min=17,delta=20,avg=3], [rep=7,min=14,delta=12,avg=4], [rep=13,min=21,delta=11,avg=1], [rep=19,min=22,delta=16,avg=1], [rep=24,min=25,delta=15,avg=2], [rep=37,min=25,delta=216,avg=140], 
+done after 37
+06:24:
+
+begin
+[rep=33,min=20,delta=119,avg=18], 
+done after 33
+06:25:
+
+begin
+[rep=34,min=19,delta=197,avg=87], 
+done after 34
+06:26:
+
+begin
+[rep=27,min=21,delta=12,avg=1], [rep=35,min=15,delta=222,avg=80], 
+done after 35
+06:27:
+
+begin
+[rep=36,min=19,delta=217,avg=130], 
+done after 36
+06:28:
+
+begin
+[rep=33,min=26,delta=208,avg=60], 
+done after 33
+06:29:
+
+begin
+[rep=34,min=25,delta=205,avg=84], 
+done after 34
+06:30:
+
+begin
+[rep=36,min=30,delta=45,avg=8], [rep=37,min=124,delta=133,avg=79], 
+done after 37
+06:31:
+
+begin
+[rep=22,min=20,delta=12,avg=3], [rep=33,min=30,delta=16,avg=2], [rep=36,min=28,delta=217,avg=156], 
+done after 36
+06:32:
+
+begin
+[rep=3,min=18,delta=13,avg=5], [rep=34,min=34,delta=175,avg=27], 
+done after 34
+06:33:
+
+begin
+[rep=33,min=33,delta=198,avg=145], 
+done after 33
+06:34:
+
+begin
+[rep=35,min=35,delta=221,avg=158], 
+done after 35
+06:35:
+
+begin
+[rep=34,min=32,delta=97,avg=13], 
+done after 34
+06:36:
+
+begin
+[rep=34,min=26,delta=225,avg=128], 
+done after 34
+06:37:
+
+begin
+[rep=2,min=11,delta=13,avg=8], [rep=34,min=32,delta=207,avg=143], 
+done after 34
+06:38:
+
+begin
+[rep=33,min=30,delta=228,avg=154], 
+done after 33
+06:39:
+
+begin
+[rep=31,min=33,delta=18,avg=6], [rep=33,min=35,delta=201,avg=101], 
+done after 33
+06:40:
+
+begin
+[rep=4,min=14,delta=15,avg=5], [rep=10,min=16,delta=17,avg=2], [rep=15,min=13,delta=19,avg=6], [rep=21,min=20,delta=18,avg=5], [rep=32,min=34,delta=11,avg=3], [rep=36,min=34,delta=220,avg=109], 
+done after 36
+06:41:
+
+begin
+[rep=34,min=24,delta=88,avg=14], 
+done after 34
+06:42:
+
+begin
+[rep=35,min=24,delta=39,avg=9], [rep=36,min=127,delta=111,avg=68], 
+done after 36
+06:43:
+
+begin
+[rep=36,min=11,delta=137,avg=24], 
+done after 36
+06:44:
+
+begin
+[rep=32,min=19,delta=132,avg=25], 
+done after 32
+06:45:
+
+begin
+[rep=36,min=19,delta=194,avg=55], 
+done after 36
+06:46:
+
+begin
+[rep=35,min=88,delta=175,avg=124], 
+done after 35
+06:47:
+
+begin
+[rep=32,min=27,delta=126,avg=21], 
+done after 32
+06:48:
+
+begin
+[rep=32,min=19,delta=185,avg=42], 
+done after 32
+06:49:
+
+begin
+[rep=0,min=12,delta=20,avg=7], [rep=6,min=17,delta=17,avg=2], [rep=11,min=16,delta=18,avg=2], [rep=17,min=15,delta=12,avg=1], [rep=22,min=17,delta=17,avg=2], [rep=36,min=39,delta=193,avg=144], 
+done after 36
+06:50:
+
+begin
+[rep=35,min=13,delta=217,avg=60], 
+done after 35
+06:51:
+
+begin
+[rep=37,min=48,delta=189,avg=136], 
+done after 37
+06:52:
+
+begin
+[rep=32,min=16,delta=63,avg=8], [rep=33,min=134,delta=112,avg=71], 
+done after 33
+06:53:
+
+begin
+[rep=32,min=17,delta=122,avg=20], 
+done after 32
+06:54:
+
+begin
+[rep=34,min=8,delta=219,avg=125], 
+done after 34
+06:55:
+
+begin
+[rep=35,min=24,delta=59,avg=11], [rep=36,min=140,delta=103,avg=66], 
+done after 36
+06:56:
+
+begin
+[rep=34,min=18,delta=129,avg=23], 
+done after 34
+06:57:
+
+begin
+[rep=16,min=18,delta=18,avg=3], [rep=18,min=14,delta=11,avg=8], [rep=22,min=25,delta=17,avg=2], [rep=28,min=29,delta=12,avg=1], [rep=33,min=26,delta=182,avg=39], 
+done after 33
+06:58:
+
+begin
+[rep=0,min=12,delta=22,avg=8], [rep=6,min=17,delta=17,avg=3], [rep=34,min=20,delta=238,avg=144], 
+done after 34
+06:59:
+
+begin
+[rep=36,min=23,delta=14,avg=9], [rep=37,min=84,delta=146,avg=106], 
+done after 37
+07:00:
+
+begin
+[rep=33,min=32,delta=221,avg=122], 
+done after 33
+07:01:
+
+begin
+[rep=36,min=22,delta=226,avg=149], 
+done after 36
+07:02:
+
+begin
+[rep=32,min=27,delta=226,avg=146], 
+done after 32
+07:03:
+
+begin
+[rep=33,min=18,delta=33,avg=8], [rep=34,min=105,delta=124,avg=77], 
+done after 34
+07:04:
+
+begin
+[rep=35,min=21,delta=226,avg=126], 
+done after 35
+07:05:
+
+begin
+[rep=36,min=55,delta=182,avg=129], 
+done after 36
+07:06:
+
+begin
+[rep=0,min=13,delta=20,avg=6], [rep=6,min=19,delta=19,avg=4], [rep=11,min=16,delta=11,avg=2], [rep=17,min=14,delta=12,avg=4], [rep=23,min=18,delta=16,avg=2], [rep=28,min=22,delta=11,avg=2], [rep=34,min=26,delta=17,avg=2], [rep=37,min=22,delta=204,avg=58], 
+done after 37
+07:07:
+
+begin
+[rep=34,min=20,delta=193,avg=50], 
+done after 34
+07:08:
+
+begin
+[rep=33,min=22,delta=106,avg=16], 
+done after 33
+07:09:
+
+begin
+[rep=37,min=21,delta=34,avg=5], [rep=38,min=114,delta=124,avg=91], 
+done after 38
+07:10:
+
+begin
+[rep=33,min=19,delta=226,avg=69], 
+done after 33
+07:11:
+
+begin
+[rep=33,min=19,delta=205,avg=52], 
+done after 33
+07:12:
+
+begin
+[rep=36,min=23,delta=227,avg=150], 
+done after 36
+07:13:
+
+begin
+[rep=35,min=37,delta=208,avg=97], 
+done after 35
+07:14:
+
+begin
+[rep=26,min=14,delta=11,avg=4], [rep=32,min=31,delta=11,avg=2], [rep=33,min=31,delta=230,avg=83], 
+done after 33
+07:15:
+
+begin
+[rep=4,min=17,delta=13,avg=2], [rep=10,min=14,delta=11,avg=2], [rep=34,min=17,delta=35,avg=4], [rep=35,min=122,delta=124,avg=87], 
+done after 35
+07:16:
+
+begin
+[rep=33,min=22,delta=193,avg=38], 
+done after 33
+07:17:
+
+begin
+[rep=4,min=16,delta=11,avg=1], [rep=15,min=15,delta=12,avg=1], [rep=39,min=24,delta=76,avg=10], [rep=40,min=133,delta=121,avg=78], 
+done after 40
+07:18:
+
+begin
+[rep=33,min=26,delta=218,avg=92], 
+done after 33
+07:19:
+
+begin
+[rep=33,min=23,delta=176,avg=34], 
+done after 33
+07:20:
+
+begin
+[rep=5,min=16,delta=11,avg=1], [rep=36,min=28,delta=229,avg=154], 
+done after 36
+07:21:
+
+begin
+[rep=36,min=26,delta=194,avg=73], 
+done after 36
+07:22:
+
+begin
+[rep=34,min=27,delta=204,avg=51], 
+done after 34
+07:23:
+
+begin
+[rep=29,min=18,delta=13,avg=5], [rep=34,min=21,delta=216,avg=128], 
+done after 34
+07:24:
+
+begin
+[rep=1,min=14,delta=19,avg=6], [rep=7,min=16,delta=17,avg=2], [rep=12,min=14,delta=14,avg=3], [rep=18,min=14,delta=14,avg=4], [rep=24,min=12,delta=21,avg=7], [rep=29,min=23,delta=16,avg=1], [rep=35,min=33,delta=12,avg=2], [rep=36,min=26,delta=215,avg=76], 
+done after 36
+07:25:
+
+begin
+[rep=37,min=22,delta=208,avg=108], 
+done after 37
+07:26:
+
+begin
+[rep=34,min=22,delta=64,avg=12], [rep=35,min=116,delta=137,avg=89], 
+done after 35
+07:27:
+
+begin
+[rep=33,min=24,delta=212,avg=142], 
+done after 33
+07:28:
+
+begin
+[rep=34,min=25,delta=212,avg=87], 
+done after 34
+07:29:
+
+begin
+[rep=36,min=26,delta=213,avg=145], 
+done after 36
+07:30:
+
+begin
+[rep=35,min=31,delta=230,avg=145], 
+done after 35
+07:31:
+
+begin
+[rep=33,min=27,delta=222,avg=157], 
+done after 33
+07:32:
+
+begin
+[rep=34,min=28,delta=228,avg=124], 
+done after 34
+07:33:
+
+begin
+[rep=10,min=15,delta=15,avg=1], [rep=16,min=13,delta=23,avg=7], [rep=22,min=21,delta=16,avg=2], [rep=27,min=23,delta=19,avg=4], [rep=33,min=34,delta=16,avg=2], [rep=35,min=33,delta=29,avg=5], [rep=36,min=124,delta=110,avg=70], 
+done after 36
+07:34:
+
+begin
+[rep=3,min=19,delta=11,avg=1], [rep=37,min=32,delta=216,avg=79], 
+done after 37
+07:35:
+
+begin
+[rep=33,min=31,delta=88,avg=11], 
+done after 33
+07:36:
+
+begin
+[rep=0,min=12,delta=11,avg=7], [rep=32,min=32,delta=196,avg=45], 
+done after 32
+07:37:
+
+begin
+[rep=33,min=28,delta=45,avg=10], [rep=34,min=128,delta=117,avg=69], 
+done after 34
+07:38:
+
+begin
+[rep=33,min=25,delta=232,avg=145], 
+done after 33
+07:39:
+
+begin
+[rep=35,min=30,delta=89,avg=14], 
+done after 35
+07:40:
+
+begin
+[rep=35,min=36,delta=26,avg=3], [rep=36,min=95,delta=158,avg=95], 
+done after 36
+07:41:
+
+begin
+[rep=32,min=25,delta=218,avg=113], 
+done after 32
+07:42:
+
+begin
+[rep=7,min=15,delta=15,avg=3], [rep=13,min=16,delta=12,avg=2], [rep=19,min=15,delta=22,avg=6], [rep=24,min=19,delta=16,avg=2], [rep=30,min=21,delta=18,avg=3], [rep=32,min=19,delta=159,avg=31], 
+done after 32
+07:43:
+
+begin
+[rep=41,min=13,delta=205,avg=136], 
+done after 41
+07:44:
+
+begin
+[rep=34,min=15,delta=60,avg=9], [rep=35,min=127,delta=114,avg=80], 
+done after 35
+07:45:
+
+begin
+[rep=33,min=24,delta=123,avg=21], 
+done after 33
+07:46:
+
+begin
+[rep=33,min=20,delta=134,avg=22], 
+done after 33
+07:47:
+
+begin
+[rep=33,min=25,delta=183,avg=51], 
+done after 33
+07:48:
+
+begin
+[rep=34,min=22,delta=195,avg=47], 
+done after 34
+07:49:
+
+begin
+[rep=35,min=15,delta=28,avg=5], [rep=36,min=96,delta=136,avg=98], 
+done after 36
+07:50:
+
+begin
+[rep=33,min=11,delta=236,avg=165], 
+done after 33
+07:51:
+
+begin
+[rep=2,min=16,delta=16,avg=3], [rep=8,min=14,delta=23,avg=6], [rep=14,min=18,delta=16,avg=1], [rep=19,min=13,delta=23,avg=6], [rep=25,min=21,delta=14,avg=4], [rep=33,min=22,delta=87,avg=13], 
+done after 33
+07:52:
+
+begin
+[rep=34,min=15,delta=215,avg=87], 
+done after 34
+07:53:
+
+begin
+[rep=37,min=17,delta=25,avg=8], [rep=38,min=97,delta=139,avg=103], 
+done after 38
+07:54:
+
+begin
+[rep=34,min=14,delta=232,avg=140], 
+done after 34
+07:55:
+
+begin
+[rep=34,min=24,delta=174,avg=35], 
+done after 34
+07:56:
+
+begin
+[rep=33,min=20,delta=230,avg=158], 
+done after 33
+07:57:
+
+begin
+[rep=11,min=21,delta=12,avg=1], [rep=35,min=35,delta=125,avg=20], 
+done after 35
+07:58:
+
+begin
+[rep=33,min=20,delta=223,avg=109], 
+done after 33
+07:59:
+
+begin
+[rep=33,min=27,delta=11,avg=5], [rep=34,min=33,delta=17,avg=1], [rep=36,min=26,delta=191,avg=93], 
+done after 36
+08:00:
+
+begin
+[rep=3,min=15,delta=18,avg=4], [rep=9,min=12,delta=22,avg=7], [rep=26,min=22,delta=11,avg=6], [rep=31,min=31,delta=13,avg=2], [rep=32,min=28,delta=218,avg=143], 
+done after 32
+08:01:
+
+begin
+[rep=34,min=17,delta=186,avg=40], 
+done after 34
+08:02:
+
+begin
+[rep=33,min=23,delta=226,avg=145], 
+done after 33
+08:03:
+
+begin
+[rep=0,min=14,delta=11,avg=6], [rep=17,min=9,delta=12,avg=1], [rep=38,min=-2,delta=213,avg=112], 
+done after 38
+08:04:
+
+begin
+[rep=36,min=19,delta=165,avg=30], 
+done after 36
+08:05:
+
+begin
+[rep=33,min=20,delta=215,avg=138], 
+done after 33
+08:06:
+
+begin
+[rep=0,min=11,delta=12,avg=7], [rep=37,min=22,delta=211,avg=76], 
+done after 37
+08:07:
+
+begin
+[rep=34,min=14,delta=208,avg=87], 
+done after 34
+08:08:
+
+begin
+[rep=34,min=22,delta=11,avg=6], [rep=35,min=47,delta=204,avg=146], 
+done after 35
+08:09:
+
+begin
+[rep=7,min=19,delta=12,avg=2], [rep=13,min=15,delta=18,avg=5], [rep=19,min=19,delta=16,avg=1], [rep=30,min=22,delta=16,avg=2], [rep=34,min=22,delta=209,avg=91], 
+done after 34
+08:10:
+
+begin
+[rep=1,min=19,delta=15,avg=1], [rep=7,min=12,delta=19,avg=4], [rep=13,min=10,delta=12,avg=4], [rep=35,min=23,delta=238,avg=126], 
+done after 35
+08:11:
+
+begin
+[rep=36,min=24,delta=171,avg=34], 
+done after 36
+08:12:
+
+begin
+[rep=36,min=20,delta=144,avg=21], 
+done after 36
+08:13:
+
+begin
+[rep=33,min=25,delta=211,avg=151], 
+done after 33
+08:14:
+
+begin
+[rep=31,min=17,delta=110,avg=14], 
+done after 31
+08:15:
+
+begin
+[rep=38,min=19,delta=223,avg=170], 
+done after 38
+08:16:
+
+begin
+[rep=34,min=54,delta=216,avg=159], 
+done after 34
+08:17:
+
+begin
+[rep=34,min=23,delta=78,avg=11], [rep=35,min=120,delta=136,avg=85], 
+done after 35
+08:18:
+
+begin
+[rep=11,min=12,delta=11,avg=4], [rep=23,min=21,delta=12,avg=2], [rep=28,min=24,delta=22,avg=5], [rep=32,min=25,delta=234,avg=163], 
+done after 32
+08:19:
+
+begin
+[rep=2,min=20,delta=15,avg=2], [rep=7,min=15,delta=18,avg=2], [rep=34,min=21,delta=122,avg=18], 
+done after 34
+08:20:
+
+begin
+[rep=41,min=30,delta=229,avg=115], 
+done after 41
+08:21:
+
+begin
+[rep=33,min=25,delta=11,avg=6], [rep=34,min=42,delta=200,avg=137], 
+done after 34
+08:22:
+
+begin
+[rep=33,min=28,delta=203,avg=50], 
+done after 33
+08:23:
+
+begin
+[rep=36,min=26,delta=214,avg=144], 
+done after 36
+08:24:
+
+begin
+[rep=36,min=30,delta=222,avg=104], 
+done after 36
+08:25:
+
+begin
+[rep=33,min=24,delta=197,avg=83], 
+done after 33
+08:26:
+
+begin
+[rep=33,min=18,delta=13,avg=9], [rep=34,min=44,delta=208,avg=152], 
+done after 34
+08:27:
+
+begin
+[rep=3,min=19,delta=13,avg=1], [rep=9,min=15,delta=22,avg=6], [rep=20,min=16,delta=18,avg=5], [rep=26,min=22,delta=15,avg=2], [rep=31,min=22,delta=20,avg=7], [rep=36,min=23,delta=203,avg=65], 
+done after 36
+08:28:
+
+begin
+[rep=1,min=19,delta=18,avg=2], [rep=37,min=28,delta=210,avg=67], 
+done after 37
+08:29:
+
+begin
+[rep=34,min=25,delta=121,avg=16], 
+done after 34
+08:30:
+
+begin
+[rep=33,min=29,delta=194,avg=40], 
+done after 33
+08:31:
+
+begin
+[rep=34,min=28,delta=30,avg=4], [rep=35,min=120,delta=127,avg=83], 
+done after 35
+08:32:
+
+begin
+[rep=35,min=28,delta=160,avg=25], 
+done after 35
+08:33:
+
+begin
+[rep=34,min=28,delta=199,avg=52], 
+done after 34
+08:34:
+
+begin
+[rep=34,min=33,delta=227,avg=141], 
+done after 34
+08:35:
+
+begin
+[rep=33,min=32,delta=224,avg=108], 
+done after 33
+08:36:
+
+begin
+[rep=8,min=25,delta=15,avg=2], [rep=20,min=30,delta=11,avg=1], [rep=25,min=31,delta=17,avg=3], [rep=31,min=41,delta=15,avg=3], [rep=32,min=36,delta=169,avg=33], 
+done after 32
+08:37:
+
+begin
+[rep=5,min=14,delta=18,avg=2], [rep=37,min=28,delta=211,avg=109], 
+done after 37
+08:38:
+
+begin
+[rep=36,min=29,delta=226,avg=135], 
+done after 36
+08:39:
+
+begin
+[rep=34,min=-5,delta=206,avg=121], 
+done after 34
+08:40:
+
+begin
+[rep=34,min=43,delta=218,avg=143], 
+done after 34
+08:41:
+
+begin
+[rep=31,min=27,delta=100,avg=16], 
+done after 31
+08:42:
+
+begin
+[rep=35,min=18,delta=204,avg=74], 
+done after 35
+08:43:
+
+begin
+[rep=0,min=20,delta=11,avg=8], [rep=39,min=44,delta=169,avg=38], 
+done after 39
+08:44:
+
+begin
+[rep=17,min=15,delta=18,avg=5], [rep=18,min=10,delta=22,avg=7], [rep=32,min=17,delta=222,avg=146], 
+done after 32
+08:45:
+
+begin
+[rep=14,min=12,delta=12,avg=4], [rep=15,min=16,delta=19,avg=1], [rep=20,min=19,delta=12,avg=1], [rep=26,min=19,delta=19,avg=5], [rep=31,min=24,delta=20,avg=4], [rep=32,min=27,delta=19,avg=2], [rep=33,min=23,delta=196,avg=75], 
+done after 33
+08:46:
+
+begin
+[rep=4,min=15,delta=16,avg=3], [rep=36,min=19,delta=239,avg=156], 
+done after 36
+08:47:
+
+begin
+[rep=35,min=27,delta=185,avg=56], 
+done after 35
+08:48:
+
+begin
+[rep=1,min=19,delta=13,avg=1], [rep=34,min=24,delta=207,avg=93], 
+done after 34
+08:49:
+
+begin
+[rep=34,min=17,delta=220,avg=129], 
+done after 34
+08:50:
+
+begin
+[rep=33,min=19,delta=233,avg=144], 
+done after 33
+08:51:
+
+begin
+[rep=35,min=15,delta=12,avg=6], [rep=36,min=32,delta=201,avg=144], 
+done after 36
+08:52:
+
+begin
+[rep=34,min=19,delta=209,avg=65], 
+done after 34
+08:53:
+
+begin
+[rep=34,min=14,delta=187,avg=46], 
+done after 34
+08:54:
+
+begin
+[rep=16,min=21,delta=14,avg=1], [rep=27,min=24,delta=13,avg=2], [rep=32,min=19,delta=113,avg=21], 
+done after 32
+08:55:
+
+begin
+[rep=1,min=19,delta=19,avg=3], [rep=6,min=16,delta=13,avg=2], [rep=12,min=28,delta=18,avg=3], [rep=35,min=40,delta=204,avg=96], 
+done after 35
+08:56:
+
+begin
+[rep=36,min=21,delta=220,avg=90], 
+done after 36
+08:57:
+
+begin
+[rep=36,min=28,delta=181,avg=39], 
+done after 36
+08:58:
+
+begin
+[rep=34,min=21,delta=231,avg=168], 
+done after 34
+08:59:
+
+begin
+[rep=33,min=27,delta=188,avg=86], 
+done after 33
+09:00:
+
+begin
+[rep=19,min=21,delta=11,avg=2], [rep=33,min=27,delta=224,avg=150], 
+done after 33
+09:01:
+
+begin
+[rep=35,min=25,delta=218,avg=143], 
+done after 35
+09:02:
+
+begin
+[rep=2,min=18,delta=12,avg=1], [rep=33,min=8,delta=112,avg=16], 
+done after 33
+09:03:
+
+begin
+[rep=31,min=15,delta=14,avg=2], [rep=36,min=12,delta=216,avg=122], 
+done after 36
+09:04:
+
+begin
+[rep=0,min=11,delta=19,avg=6], [rep=6,min=17,delta=18,avg=4], [rep=12,min=13,delta=17,avg=2], [rep=36,min=21,delta=212,avg=87], 
+done after 36
+09:05:
+
+begin
+[rep=33,min=19,delta=75,avg=13], [rep=34,min=124,delta=110,avg=69], 
+done after 34
+09:06:
+
+begin
+[rep=41,min=18,delta=13,avg=10], [rep=42,min=110,delta=133,avg=89], 
+done after 42
+09:07:
+
+begin
+[rep=31,min=21,delta=204,avg=72], 
+done after 31
+09:08:
+
+begin
+[rep=4,min=16,delta=11,avg=1], [rep=31,min=24,delta=209,avg=76], 
+done after 31
+09:09:
+
+begin
+[rep=34,min=21,delta=128,avg=20], 
+done after 34
+09:10:
+
+begin
+[rep=36,min=24,delta=236,avg=156], 
+done after 36
+09:11:
+
+begin
+[rep=36,min=44,delta=213,avg=159], 
+done after 36
+09:12:
+
+begin
+[rep=14,min=27,delta=20,avg=9], [rep=20,min=28,delta=19,avg=6], [rep=25,min=36,delta=20,avg=2], [rep=31,min=42,delta=16,avg=2], [rep=34,min=43,delta=48,avg=5], [rep=35,min=154,delta=114,avg=71], 
+done after 35
+09:13:
+
+begin
+[rep=2,min=18,delta=17,avg=2], [rep=35,min=27,delta=212,avg=148], 
+done after 35
+09:14:
+
+begin
+[rep=33,min=14,delta=226,avg=86], 
+done after 33
+09:15:
+
+begin
+[rep=37,min=17,delta=127,avg=16], 
+done after 37
+09:16:
+
+begin
+[rep=32,min=25,delta=23,avg=7], [rep=33,min=118,delta=154,avg=103], 
+done after 33
+09:17:
+
+begin
+[rep=34,min=23,delta=229,avg=117], 
+done after 34
+09:18:
+
+begin
+[rep=34,min=32,delta=187,avg=38], 
+done after 34
+09:19:
+
+begin
+[rep=35,min=25,delta=186,avg=40], 
+done after 35
+09:20:
+
+begin
+[rep=36,min=35,delta=91,avg=9], 
+done after 36
+09:21:
+
+begin
+[rep=7,min=10,delta=17,avg=4], [rep=12,min=8,delta=16,avg=3], [rep=18,min=11,delta=15,avg=3], [rep=24,min=17,delta=12,avg=2], [rep=29,min=23,delta=17,avg=3], [rep=33,min=24,delta=190,avg=53], 
+done after 33
+09:22:
+
+begin
+[rep=38,min=27,delta=225,avg=143], 
+done after 38
+09:23:
+
+begin
+[rep=36,min=32,delta=196,avg=81], 
+done after 36
+09:24:
+
+begin
+[rep=34,min=62,delta=193,avg=135], 
+done after 34
+09:25:
+
+begin
+[rep=33,min=22,delta=195,avg=84], 
+done after 33
+09:26:
+
+begin
+[rep=35,min=20,delta=206,avg=50], 
+done after 35
+09:27:
+
+begin
+[rep=36,min=24,delta=213,avg=135], 
+done after 36
+09:28:
+
+begin
+[rep=33,min=29,delta=196,avg=47], 
+done after 33
+09:29:
+
+begin
+[rep=34,min=27,delta=164,avg=30], 
+done after 34
+09:30:
+
+begin
+[rep=0,min=15,delta=19,avg=7], [rep=5,min=18,delta=20,avg=4], [rep=11,min=14,delta=20,avg=5], [rep=16,min=20,delta=16,avg=1], [rep=22,min=22,delta=17,avg=4], [rep=37,min=34,delta=226,avg=156], 
+done after 37
+09:31:
+
+begin
+[rep=0,min=13,delta=25,avg=10], [rep=1,min=19,delta=22,avg=7], [rep=36,min=29,delta=183,avg=42], 
+done after 36
+09:32:
+
+begin
+[rep=0,min=13,delta=11,avg=6], [rep=35,min=30,delta=229,avg=159], 
+done after 35
+09:33:
+
+begin
+[rep=32,min=32,delta=192,avg=93], 
+done after 32
+09:34:
+
+begin
+[rep=34,min=32,delta=127,avg=19], 
+done after 34
+09:35:
+
+begin
+[rep=35,min=31,delta=199,avg=46], 
+done after 35
+09:36:
+
+begin
+[rep=34,min=33,delta=224,avg=159], 
+done after 34
+09:37:
+
+begin
+[rep=33,min=30,delta=15,avg=8], [rep=34,min=57,delta=183,avg=132], 
+done after 34
+09:38:
+
+begin
+[rep=22,min=26,delta=12,avg=3], [rep=28,min=32,delta=18,avg=1], [rep=33,min=32,delta=237,avg=160], 
+done after 33
+09:39:
+
+begin
+[rep=0,min=12,delta=13,avg=6], [rep=6,min=18,delta=13,avg=1], [rep=11,min=18,delta=13,avg=2], [rep=12,min=19,delta=19,avg=1], [rep=17,min=17,delta=13,avg=5], [rep=23,min=27,delta=15,avg=2], [rep=33,min=34,delta=200,avg=119], 
+done after 33
+09:40:
+
+begin
+[rep=36,min=35,delta=210,avg=67], 
+done after 36
+09:41:
+
+begin
+[rep=34,min=29,delta=195,avg=57], 
+done after 34
+09:42:
+
+begin
+[rep=35,min=20,delta=96,avg=17], 
+done after 35
+09:43:
+
+begin
+[rep=37,min=18,delta=89,avg=12], 
+done after 37
+09:44:
+
+begin
+[rep=32,min=21,delta=200,avg=63], 
+done after 32
+09:45:
+
+begin
+[rep=36,min=28,delta=205,avg=130], 
+done after 36
+09:46:
+
+begin
+[rep=0,min=13,delta=11,avg=5], [rep=34,min=25,delta=218,avg=63], 
+done after 34
+09:47:
+
+begin
+[rep=11,min=16,delta=12,avg=3], [rep=17,min=17,delta=15,avg=2], [rep=22,min=22,delta=12,avg=1], [rep=28,min=24,delta=20,avg=3], [rep=33,min=26,delta=191,avg=91], 
+done after 33
+09:48:
+
+begin
+[rep=1,min=20,delta=15,avg=1], [rep=6,min=18,delta=16,avg=2], [rep=12,min=14,delta=23,avg=7], [rep=32,min=25,delta=209,avg=106], 
+done after 32
+09:49:
+
+begin
+[rep=35,min=22,delta=104,avg=16], 
+done after 35
+09:50:
+
+begin
+[rep=36,min=21,delta=214,avg=58], 
+done after 36
+09:51:
+
+begin
+[rep=36,min=19,delta=22,avg=4], [rep=37,min=86,delta=148,avg=105], 
+done after 37
+09:52:
+
+begin
+[rep=32,min=25,delta=174,avg=36], 
+done after 32
+09:53:
+
+begin
+[rep=33,min=23,delta=103,avg=16], 
+done after 33
+09:54:
+
+begin
+[rep=34,min=18,delta=74,avg=14], [rep=35,min=145,delta=114,avg=65], 
+done after 35
+09:55:
+
+begin
+[rep=35,min=26,delta=181,avg=40], 
+done after 35
+09:56:
+
+begin
+[rep=14,min=17,delta=15,avg=3], [rep=20,min=20,delta=14,avg=1], [rep=25,min=24,delta=14,avg=2], [rep=31,min=27,delta=17,avg=2], [rep=34,min=25,delta=12,avg=5], [rep=35,min=85,delta=167,avg=124], 
+done after 35
+09:57:
+
+begin
+[rep=1,min=18,delta=15,avg=3], [rep=7,min=15,delta=17,avg=5], [rep=24,min=28,delta=11,avg=1], [rep=33,min=29,delta=220,avg=146], 
+done after 33
+09:58:
+
+begin
+[rep=33,min=20,delta=222,avg=81], 
+done after 33
+09:59:
+
+begin
+[rep=35,min=26,delta=13,avg=7], [rep=36,min=41,delta=190,avg=140], 
+done after 36
+10:00:
+
+begin
+[rep=34,min=27,delta=66,avg=11], [rep=35,min=107,delta=145,avg=92], 
+done after 35
+10:01:
+
+begin
+[rep=35,min=25,delta=213,avg=99], 
+done after 35
+10:02:
+
+begin
+[rep=32,min=30,delta=214,avg=85], 
+done after 32
+10:03:
+
+begin
+[rep=34,min=24,delta=207,avg=127], 
+done after 34
+10:04:
+
+begin
+[rep=25,min=19,delta=18,avg=3], [rep=27,min=20,delta=21,avg=5], [rep=28,min=21,delta=17,avg=5], [rep=35,min=20,delta=41,avg=8], [rep=36,min=123,delta=122,avg=76], 
+done after 36
+10:05:
+
+begin
+[rep=15,min=17,delta=15,avg=2], [rep=21,min=17,delta=12,avg=2], [rep=26,min=20,delta=14,avg=1], [rep=32,min=21,delta=20,avg=6], [rep=35,min=20,delta=18,avg=8], [rep=36,min=100,delta=131,avg=85], 
+done after 36
+10:06:
+
+begin
+[rep=37,min=24,delta=209,avg=71], 
+done after 37
+10:07:
+
+begin
+[rep=34,min=27,delta=206,avg=108], 
+done after 34
+10:08:
+
+begin
+[rep=34,min=24,delta=223,avg=149], 
+done after 34
+10:09:
+
+begin
+[rep=37,min=26,delta=218,avg=146], 
+done after 37
+10:10:
+
+begin
+[rep=33,min=28,delta=232,avg=126], 
+done after 33
+10:11:
+
+begin
+[rep=33,min=27,delta=228,avg=155], 
+done after 33
+10:12:
+
+begin
+[rep=35,min=26,delta=122,avg=16], 
+done after 35
+10:13:
+
+begin
+[rep=35,min=32,delta=128,avg=14], 
+done after 35
+10:14:
+
+begin
+[rep=0,min=13,delta=17,avg=6], [rep=6,min=18,delta=11,avg=1], [rep=12,min=15,delta=21,avg=5], [rep=17,min=11,delta=13,avg=5], [rep=23,min=16,delta=17,avg=2], [rep=29,min=17,delta=12,avg=3], [rep=33,min=17,delta=111,avg=16], 
+done after 33
+10:15:
+
+begin
+[rep=35,min=22,delta=209,avg=61], 
+done after 35
+10:16:
+
+begin
+[rep=34,min=22,delta=185,avg=37], 
+done after 34
+10:17:
+
+begin
+[rep=39,min=25,delta=232,avg=134], 
+done after 39
+10:18:
+
+begin
+[rep=0,min=13,delta=11,avg=6], [rep=33,min=26,delta=175,avg=32], 
+done after 33
+10:19:
+
+begin
+[rep=34,min=52,delta=192,avg=137], 
+done after 34
+10:20:
+
+begin
+[rep=35,min=31,delta=216,avg=77], 
+done after 35
+10:21:
+
+begin
+[rep=36,min=29,delta=120,avg=19], 
+done after 36
+10:22:
+
+begin
+[rep=32,min=33,delta=21,avg=7], [rep=34,min=35,delta=172,avg=31], 
+done after 34
+10:23:
+
+begin
+[rep=3,min=15,delta=21,avg=5], [rep=9,min=17,delta=17,avg=3], [rep=15,min=17,delta=17,avg=3], [rep=20,min=20,delta=21,avg=4], [rep=26,min=28,delta=13,avg=1], [rep=32,min=32,delta=17,avg=4], [rep=34,min=29,delta=205,avg=98], 
+done after 34
+10:24:
+
+begin
+[rep=37,min=32,delta=222,avg=147], 
+done after 37
+10:25:
+
+begin
+[rep=0,min=12,delta=12,avg=7], [rep=36,min=24,delta=205,avg=132], 
+done after 36
+10:26:
+
+begin
+[rep=34,min=24,delta=22,avg=7], [rep=35,min=110,delta=143,avg=90], 
+done after 35
+10:27:
+
+begin
+[rep=33,min=29,delta=208,avg=147], 
+done after 33
+10:28:
+
+begin
+[rep=33,min=27,delta=50,avg=9], [rep=34,min=121,delta=131,avg=80], 
+done after 34
+10:29:
+
+begin
+[rep=35,min=26,delta=39,avg=7], [rep=36,min=118,delta=121,avg=74], 
+done after 36
+10:30:
+
+begin
+[rep=34,min=33,delta=19,avg=7], [rep=35,min=115,delta=146,avg=86], 
+done after 35
+10:31:
+
+begin
+[rep=23,min=25,delta=14,avg=2], [rep=29,min=30,delta=17,avg=3], [rep=32,min=32,delta=156,avg=27], 
+done after 32
+10:32:
+
+begin
+[rep=2,min=17,delta=11,avg=1], [rep=8,min=15,delta=17,avg=3], [rep=14,min=16,delta=20,avg=2], [rep=19,min=18,delta=16,avg=2], [rep=25,min=22,delta=16,avg=1], [rep=30,min=23,delta=17,avg=4], [rep=34,min=28,delta=210,avg=50], 
+done after 34
+10:33:
+
+begin
+[rep=35,min=30,delta=209,avg=150], 
+done after 35
+10:34:
+
+begin
+[rep=38,min=35,delta=225,avg=138], 
+done after 38
+10:35:
+
+begin
+[rep=34,min=31,delta=220,avg=103], 
+done after 34
+10:36:
+
+begin
+[rep=32,min=35,delta=210,avg=99], 
+done after 32
+10:37:
+
+begin
+[rep=33,min=33,delta=155,avg=28], 
+done after 33
+10:38:
+
+begin
+[rep=33,min=26,delta=60,avg=10], [rep=34,min=102,delta=159,avg=100], 
+done after 34
+10:39:
+
+begin
+[rep=5,min=19,delta=11,avg=1], [rep=35,min=31,delta=194,avg=61], 
+done after 35
+10:40:
+
+begin
+[rep=27,min=33,delta=11,avg=2], [rep=35,min=40,delta=207,avg=54], 
+done after 35
+10:41:
+
+begin
+[rep=3,min=18,delta=16,avg=1], [rep=9,min=14,delta=18,avg=5], [rep=14,min=14,delta=19,avg=5], [rep=20,min=16,delta=13,avg=6], [rep=31,min=27,delta=21,avg=5], [rep=33,min=81,delta=163,avg=96], 
+done after 33
+10:42:
+
+begin
+[rep=32,min=21,delta=203,avg=73], 
+done after 32
+10:43:
+
+begin
+[rep=40,min=19,delta=191,avg=89], 
+done after 40
+10:44:
+
+begin
+[rep=34,min=23,delta=11,avg=2], [rep=35,min=20,delta=216,avg=127], 
+done after 35
+10:45:
+
+begin
+[rep=34,min=29,delta=192,avg=98], 
+done after 34
+10:46:
+
+begin
+[rep=33,min=24,delta=222,avg=81], 
+done after 33
+10:47:
+
+begin
+[rep=0,min=9,delta=12,avg=10], [rep=33,min=27,delta=206,avg=142], 
+done after 33
+10:48:
+
+begin
+[rep=33,min=22,delta=48,avg=8], [rep=34,min=122,delta=122,avg=83], 
+done after 34
+10:49:
+
+begin
+[rep=0,min=14,delta=11,avg=5], [rep=34,min=27,delta=12,avg=1], [rep=35,min=23,delta=201,avg=86], 
+done after 35
+10:50:
+
+begin
+[rep=5,min=16,delta=15,avg=2], [rep=11,min=16,delta=11,avg=1], [rep=16,min=15,delta=16,avg=2], [rep=22,min=16,delta=21,avg=4], [rep=33,min=17,delta=205,avg=52], 
+done after 33
+10:51:
+
+begin
+[rep=34,min=37,delta=198,avg=143], 
+done after 34
+10:52:
+
+begin
+[rep=0,min=12,delta=12,avg=7], [rep=8,min=18,delta=20,avg=6], [rep=9,min=18,delta=20,avg=2], [rep=33,min=20,delta=212,avg=110], 
+done after 33
+10:53:
+
+begin
+[rep=36,min=20,delta=39,avg=9], [rep=37,min=109,delta=130,avg=96], 
+done after 37
+10:54:
+
+begin
+[rep=35,min=19,delta=232,avg=143], 
+done after 35
+10:55:
+
+begin
+[rep=35,min=25,delta=213,avg=153], 
+done after 35
+10:56:
+
+begin
+[rep=32,min=28,delta=163,avg=33], 
+done after 32
+10:57:
+
+begin
+[rep=31,min=32,delta=11,avg=1], [rep=35,min=29,delta=216,avg=147], 
+done after 35
+10:58:
+
+begin
+[rep=30,min=22,delta=19,avg=7], [rep=34,min=24,delta=234,avg=134], 
+done after 34
+10:59:
+
+begin
+[rep=2,min=19,delta=18,avg=6], [rep=36,min=29,delta=196,avg=104], 
+done after 36
+11:00:
+
+begin
+[rep=32,min=30,delta=222,avg=116], 
+done after 32
+11:01:
+
+begin
+[rep=34,min=26,delta=204,avg=89], 
+done after 34
+11:02:
+
+begin
+[rep=33,min=25,delta=227,avg=151], 
+done after 33
+11:03:
+
+begin
+[rep=38,min=21,delta=173,avg=33], 
+done after 38
+11:04:
+
+begin
+[rep=36,min=23,delta=173,avg=36], 
+done after 36
+11:05:
+
+begin
+[rep=33,min=23,delta=198,avg=100], 
+done after 33
+11:06:
+
+begin
+[rep=37,min=24,delta=199,avg=51], 
+done after 37
+11:07:
+
+begin
+[rep=0,min=13,delta=22,avg=7], [rep=5,min=17,delta=19,avg=2], [rep=11,min=19,delta=11,avg=2], [rep=17,min=21,delta=14,avg=1], [rep=22,min=22,delta=13,avg=1], [rep=28,min=28,delta=15,avg=1], [rep=33,min=31,delta=21,avg=2], [rep=34,min=24,delta=205,avg=104], 
+done after 34
+11:08:
+
+begin
+[rep=5,min=18,delta=16,avg=2], [rep=34,min=27,delta=29,avg=5], [rep=35,min=121,delta=126,avg=80], 
+done after 35
+11:09:
+
+begin
+[rep=34,min=22,delta=218,avg=139], 
+done after 34
+11:10:
+
+begin
+[rep=35,min=27,delta=229,avg=167], 
+done after 35
+11:11:
+
+begin
+[rep=36,min=24,delta=198,avg=45], 
+done after 36
+11:12:
+
+begin
+[rep=36,min=29,delta=163,avg=27], 
+done after 36
+11:13:
+
+begin
+[rep=33,min=30,delta=212,avg=120], 
+done after 33
+11:14:
+
+begin
+[rep=32,min=43,delta=208,avg=156], 
+done after 32
+11:15:
+
+begin
+[rep=37,min=19,delta=213,avg=91], 
+done after 37
+11:16:
+
+begin
+[rep=10,min=17,delta=12,avg=1], [rep=15,min=17,delta=16,avg=2], [rep=21,min=18,delta=17,avg=2], [rep=27,min=22,delta=12,avg=3], [rep=32,min=26,delta=12,avg=2], [rep=34,min=24,delta=242,avg=135], 
+done after 34
+11:17:
+
+begin
+[rep=4,min=12,delta=17,avg=6], [rep=35,min=24,delta=230,avg=157], 
+done after 35
+11:18:
+
+begin
+[rep=32,min=26,delta=219,avg=93], 
+done after 32
+11:19:
+
+begin
+[rep=35,min=24,delta=215,avg=122], 
+done after 35
+11:20:
+
+begin
+[rep=40,min=34,delta=210,avg=59], 
+done after 40
+11:21:
+
+begin
+[rep=19,min=21,delta=24,avg=11], [rep=34,min=32,delta=189,avg=60], 
+done after 34
+11:22:
+
+begin
+[rep=34,min=31,delta=210,avg=72], 
+done after 34
+11:23:
+
+begin
+[rep=36,min=24,delta=214,avg=120], 
+done after 36
+11:24:
+
+begin
+[rep=0,min=12,delta=12,avg=6], [rep=34,min=32,delta=15,avg=3], [rep=36,min=31,delta=225,avg=142], 
+done after 36
+11:25:
+
+begin
+[rep=4,min=15,delta=17,avg=5], [rep=10,min=17,delta=13,avg=2], [rep=21,min=19,delta=17,avg=4], [rep=27,min=28,delta=13,avg=1], [rep=32,min=26,delta=29,avg=9], [rep=33,min=52,delta=181,avg=126], 
+done after 33
+11:26:
+
+begin
+[rep=33,min=25,delta=170,avg=31], 
+done after 33
+11:27:
+
+begin
+[rep=38,min=24,delta=215,avg=114], 
+done after 38
+11:28:
+
+begin
+[rep=36,min=31,delta=218,avg=113], 
+done after 36
+11:29:
+
+begin
+[rep=34,min=27,delta=209,avg=129], 
+done after 34
+11:30:
+
+begin
+[rep=33,min=33,delta=227,avg=121], 
+done after 33
+11:31:
+
+begin
+[rep=35,min=26,delta=219,avg=118], 
+done after 35
+11:32:
+
+begin
+[rep=35,min=31,delta=28,avg=4], [rep=36,min=129,delta=130,avg=77], 
+done after 36
+11:33:
+
+begin
+[rep=25,min=26,delta=12,avg=4], [rep=26,min=31,delta=16,avg=1], [rep=31,min=35,delta=12,avg=2], [rep=33,min=34,delta=193,avg=71], 
+done after 33
+11:34:
+
+begin
+[rep=4,min=17,delta=17,avg=5], [rep=9,min=15,delta=12,avg=3], [rep=15,min=18,delta=14,avg=2], [rep=34,min=34,delta=227,avg=116], 
+done after 34
+11:35:
+
+begin
+[rep=33,min=27,delta=74,avg=13], [rep=34,min=93,delta=150,avg=98], 
+done after 34
+11:36:
+
+begin
+[rep=32,min=32,delta=165,avg=31], 
+done after 32
+11:37:
+
+begin
+[rep=37,min=29,delta=197,avg=83], 
+done after 37
+11:38:
+
+begin
+[rep=19,min=24,delta=21,avg=4], [rep=20,min=26,delta=21,avg=6], [rep=35,min=28,delta=220,avg=69], 
+done after 35
+11:39:
+
+begin
+[rep=33,min=37,delta=86,avg=10], 
+done after 33
+11:40:
+
+begin
+[rep=34,min=38,delta=202,avg=42], 
+done after 34
+11:41:
+
+begin
+[rep=32,min=27,delta=161,avg=32], 
+done after 32
+11:42:
+
+begin
+[rep=21,min=18,delta=17,avg=3], [rep=26,min=18,delta=18,avg=4], [rep=32,min=21,delta=13,avg=5], [rep=35,min=21,delta=199,avg=74], 
+done after 35
+11:43:
+
+begin
+[rep=3,min=16,delta=16,avg=3], [rep=8,min=14,delta=18,avg=3], [rep=14,min=14,delta=12,avg=4], [rep=39,min=21,delta=184,avg=89], 
+done after 39
+11:44:
+
+begin
+[rep=32,min=19,delta=223,avg=157], 
+done after 32
+11:45:
+
+begin
+[rep=33,min=25,delta=102,avg=16], 
+done after 33
+11:46:
+
+begin
+[rep=37,min=18,delta=226,avg=101], 
+done after 37
+11:47:
+
+begin
+[rep=3,min=18,delta=12,avg=1], [rep=26,min=28,delta=11,avg=1], [rep=35,min=27,delta=196,avg=106], 
+done after 35
+11:48:
+
+begin
+[rep=33,min=24,delta=205,avg=80], 
+done after 33
+11:49:
+
+begin
+[rep=33,min=22,delta=24,avg=4], [rep=34,min=102,delta=136,avg=96], 
+done after 34
+11:50:
+
+begin
+[rep=32,min=22,delta=221,avg=79], 
+done after 32
+11:51:
+
+begin
+[rep=5,min=17,delta=11,avg=1], [rep=21,min=13,delta=12,avg=2], [rep=27,min=16,delta=15,avg=7], [rep=33,min=20,delta=17,avg=2], [rep=36,min=17,delta=69,avg=12], [rep=37,min=127,delta=106,avg=70], 
+done after 37
+11:52:
+
+begin
+[rep=1,min=17,delta=12,avg=2], [rep=29,min=21,delta=12,avg=1], [rep=34,min=20,delta=229,avg=122], 
+done after 34
+11:53:
+
+begin
+[rep=34,min=22,delta=216,avg=123], 
+done after 34
+11:54:
+
+begin
+[rep=32,min=19,delta=61,avg=14], [rep=33,min=137,delta=117,avg=71], 
+done after 33
+11:55:
+
+begin
+[rep=35,min=25,delta=213,avg=140], 
+done after 35
+11:56:
+
+begin
+[rep=36,min=27,delta=217,avg=82], 
+done after 36
+11:57:
+
+begin
+[rep=35,min=27,delta=11,avg=8], [rep=36,min=61,delta=186,avg=133], 
+done after 36
+11:58:
+
+begin
+[rep=32,min=21,delta=167,avg=31], 
+done after 32
+11:59:
+
+begin
+[rep=33,min=27,delta=29,avg=8], [rep=34,min=110,delta=121,avg=80], 
+done after 34
+12:00:
+
+begin
+[rep=15,min=17,delta=17,avg=5], [rep=21,min=22,delta=19,avg=4], [rep=26,min=24,delta=19,avg=3], [rep=32,min=25,delta=213,avg=75], 
+done after 32
+12:01:
+
+begin
+[rep=0,min=13,delta=12,avg=6], [rep=35,min=24,delta=217,avg=102], 
+done after 35
+12:02:
+
+begin
+[rep=34,min=26,delta=223,avg=124], 
+done after 34
+12:03:
+
+begin
+[rep=35,min=24,delta=208,avg=128], 
+done after 35
+12:04:
+
+begin
+[rep=34,min=21,delta=73,avg=11], [rep=35,min=137,delta=110,avg=66], 
+done after 35
+12:05:
+
+begin
+[rep=33,min=20,delta=77,avg=13], [rep=34,min=121,delta=113,avg=72], 
+done after 34
+12:06:
+
+begin
+[rep=41,min=20,delta=216,avg=119], 
+done after 41
+12:07:
+
+begin
+[rep=32,min=25,delta=215,avg=114], 
+done after 32
+12:08:
+
+begin
+[rep=19,min=22,delta=17,avg=2], [rep=31,min=26,delta=13,avg=6], [rep=32,min=24,delta=223,avg=160], 
+done after 32
+12:09:
+
+begin
+[rep=4,min=13,delta=16,avg=4], [rep=10,min=11,delta=14,avg=5], [rep=16,min=15,delta=11,avg=2], [rep=21,min=16,delta=12,avg=1], [rep=27,min=17,delta=19,avg=3], [rep=35,min=20,delta=212,avg=123], 
+done after 35
+12:10:
+
+begin
+[rep=34,min=29,delta=130,avg=17], 
+done after 34
+12:11:
+
+begin
+[rep=37,min=41,delta=215,avg=156], 
+done after 37
+12:12:
+
+begin
+[rep=34,min=26,delta=209,avg=98], 
+done after 34
+12:13:
+
+begin
+[rep=0,min=13,delta=11,avg=7], [rep=35,min=29,delta=213,avg=134], 
+done after 35
+12:14:
+
+begin
+[rep=35,min=14,delta=236,avg=137], 
+done after 35
+12:15:
+
+begin
+[rep=37,min=20,delta=222,avg=148], 
+done after 37
+12:16:
+
+begin
+[rep=32,min=26,delta=231,avg=99], 
+done after 32
+12:17:
+
+begin
+[rep=14,min=13,delta=16,avg=4], [rep=19,min=13,delta=20,avg=7], [rep=36,min=28,delta=225,avg=147], 
+done after 36
+12:18:
+
+begin
+[rep=0,min=12,delta=23,avg=8], [rep=6,min=14,delta=18,avg=5], [rep=17,min=17,delta=14,avg=3], [rep=33,min=21,delta=11,avg=8], [rep=34,min=24,delta=218,avg=79], 
+done after 34
+12:19:
+
+begin
+[rep=0,min=13,delta=11,avg=7], [rep=34,min=27,delta=175,avg=36], 
+done after 34
+12:20:
+
+begin
+[rep=6,min=20,delta=12,avg=2], [rep=35,min=33,delta=227,avg=106], 
+done after 35
+12:21:
+
+begin
+[rep=35,min=27,delta=217,avg=139], 
+done after 35
+12:22:
+
+begin
+[rep=37,min=31,delta=81,avg=14], 
+done after 37
+12:23:
+
+begin
+[rep=36,min=30,delta=210,avg=128], 
+done after 36
+12:24:
+
+begin
+[rep=33,min=28,delta=207,avg=59], 
+done after 33
+12:25:
+
+begin
+[rep=34,min=20,delta=13,avg=10], [rep=35,min=97,delta=131,avg=84], 
+done after 35
+12:26:
+
+begin
+[rep=10,min=15,delta=15,avg=2], [rep=21,min=16,delta=12,avg=4], [rep=27,min=18,delta=19,avg=6], [rep=35,min=22,delta=231,avg=146], 
+done after 35
+12:27:
+
+begin
+[rep=35,min=22,delta=218,avg=124], 
+done after 35
+12:28:
+
+begin
+[rep=33,min=29,delta=223,avg=128], 
+done after 33
+12:29:
+
+begin
+[rep=34,min=25,delta=165,avg=31], 
+done after 34
+12:30:
+
+begin
+[rep=38,min=28,delta=228,avg=138], 
+done after 38
+12:31:
+
+begin
+[rep=35,min=28,delta=212,avg=105], 
+done after 35
+12:32:
+
+begin
+[rep=34,min=28,delta=194,avg=39], 
+done after 34
+12:33:
+
+begin
+[rep=32,min=33,delta=28,avg=7], [rep=33,min=119,delta=118,avg=72], 
+done after 33
+12:34:
+
+begin
+[rep=35,min=30,delta=88,avg=13], 
+done after 35
+12:35:
+
+begin
+[rep=14,min=15,delta=13,avg=6], [rep=20,min=21,delta=16,avg=1], [rep=25,min=22,delta=11,avg=2], [rep=26,min=27,delta=16,avg=1], [rep=31,min=30,delta=16,avg=6], [rep=35,min=32,delta=190,avg=39], 
+done after 35
+12:36:
+
+begin
+[rep=2,min=19,delta=14,avg=1], [rep=7,min=15,delta=13,avg=4], [rep=33,min=31,delta=66,avg=12], [rep=34,min=121,delta=134,avg=83], 
+done after 34
+12:37:
+
+begin
+[rep=33,min=28,delta=213,avg=133], 
+done after 33
+12:38:
+
+begin
+[rep=33,min=30,delta=227,avg=162], 
+done after 33
+12:39:
+
+begin
+[rep=33,min=29,delta=24,avg=9], [rep=34,min=110,delta=124,avg=76], 
+done after 34
+12:40:
+
+begin
+[rep=37,min=52,delta=199,avg=137], 
+done after 37
+12:41:
+
+begin
+[rep=0,min=12,delta=11,avg=7], [rep=33,min=24,delta=191,avg=52], 
+done after 33
+12:42:
+
+begin
+[rep=34,min=21,delta=199,avg=60], 
+done after 34
+12:43:
+
+begin
+[rep=37,min=14,delta=109,avg=18], 
+done after 37
+12:44:
+
+begin
+[rep=15,min=12,delta=17,avg=5], [rep=20,min=13,delta=17,avg=4], [rep=26,min=13,delta=17,avg=6], [rep=32,min=18,delta=22,avg=7], [rep=33,min=16,delta=229,avg=138], 
+done after 33
+12:45:
+
+begin
+[rep=4,min=17,delta=15,avg=1], [rep=10,min=15,delta=20,avg=3], [rep=35,min=25,delta=12,avg=5], [rep=36,min=92,delta=139,avg=97], 
+done after 36
+12:46:
+
+begin
+[rep=33,min=20,delta=168,avg=33], 
+done after 33
+12:47:
+
+begin
+[rep=33,min=25,delta=194,avg=104], 
+done after 33
+12:48:
+
+begin
+[rep=32,min=22,delta=206,avg=86], 
+done after 32
+12:49:
+
+begin
+[rep=0,min=12,delta=12,avg=6], [rep=37,min=19,delta=218,avg=137], 
+done after 37
+12:50:
+
+begin
+[rep=35,min=21,delta=218,avg=65], 
+done after 35
+12:51:
+
+begin
+[rep=35,min=20,delta=162,avg=37], 
+done after 35
+12:52:
+
+begin
+[rep=33,min=20,delta=209,avg=74], 
+done after 33
+12:53:
+
+begin
+[rep=24,min=14,delta=16,avg=6], [rep=30,min=19,delta=22,avg=6], [rep=34,min=19,delta=209,avg=117], 
+done after 34
+12:54:
+
+begin
+[rep=1,min=14,delta=17,avg=5], [rep=7,min=10,delta=13,avg=6], [rep=13,min=15,delta=12,avg=1], [rep=18,min=13,delta=19,avg=4], [rep=34,min=14,delta=125,avg=25], 
+done after 34
+12:55:
+
+begin
+[rep=36,min=24,delta=212,avg=124], 
+done after 36
+12:56:
+
+begin
+[rep=33,min=26,delta=109,avg=17], 
+done after 33
+12:57:
+
+begin
+[rep=34,min=28,delta=220,avg=158], 
+done after 34
+12:58:
+
+begin
+[rep=32,min=18,delta=14,avg=9], [rep=33,min=60,delta=195,avg=140], 
+done after 33
+12:59:
+
+begin
+[rep=29,min=26,delta=11,avg=1], [rep=37,min=22,delta=189,avg=96], 
+done after 37
+13:00:
+
+begin
+[rep=31,min=32,delta=14,avg=5], [rep=32,min=29,delta=197,avg=46], 
+done after 32
+13:01:
+
+begin
+[rep=36,min=21,delta=217,avg=110], 
+done after 36
+13:02:
+
+begin
+[rep=32,min=24,delta=217,avg=65], 
+done after 32
+13:03:
+
+begin
+[rep=5,min=14,delta=16,avg=2], [rep=11,min=10,delta=18,avg=5], [rep=16,min=12,delta=15,avg=3], [rep=22,min=12,delta=24,avg=6], [rep=34,min=15,delta=129,avg=22], 
+done after 34
+13:04:
+
+begin
+[rep=36,min=17,delta=227,avg=137], 
+done after 36
+13:05:
+
+begin
+[rep=25,min=10,delta=12,avg=8], [rep=29,min=21,delta=21,avg=7], [rep=30,min=22,delta=20,avg=3], [rep=35,min=18,delta=22,avg=10], [rep=36,min=109,delta=121,avg=77], 
+done after 36
+13:06:
+
+begin
+[rep=36,min=21,delta=228,avg=131], 
+done after 36
+13:07:
+
+begin
+[rep=33,min=22,delta=204,avg=72], 
+done after 33
+13:08:
+
+begin
+[rep=34,min=25,delta=227,avg=128], 
+done after 34
+13:09:
+
+begin
+[rep=37,min=22,delta=189,avg=51], 
+done after 37
+13:10:
+
+begin
+[rep=34,min=29,delta=227,avg=149], 
+done after 34
+13:11:
+
+begin
+[rep=13,min=14,delta=18,avg=4], [rep=19,min=15,delta=11,avg=2], [rep=24,min=16,delta=18,avg=2], [rep=30,min=20,delta=12,avg=3], [rep=34,min=24,delta=213,avg=67], 
+done after 34
+13:12:
+
+begin
+[rep=36,min=23,delta=203,avg=56], 
+done after 36
+13:13:
+
+begin
+[rep=0,min=12,delta=11,avg=6], [rep=35,min=29,delta=203,avg=104], 
+done after 35
+13:14:
+
+begin
+[rep=33,min=12,delta=224,avg=82], 
+done after 33
+13:15:
+
+begin
+[rep=34,min=18,delta=31,avg=3], [rep=35,min=113,delta=133,avg=98], 
+done after 35
+13:16:
+
+begin
+[rep=27,min=19,delta=13,avg=1], [rep=33,min=20,delta=144,avg=25], 
+done after 33
+13:17:
+
+begin
+[rep=40,min=20,delta=217,avg=79], 
+done after 40
+13:18:
+
+begin
+[rep=33,min=25,delta=217,avg=69], 
+done after 33
+13:19:
+
+begin
+[rep=22,min=20,delta=15,avg=2], [rep=28,min=22,delta=20,avg=2], [rep=33,min=24,delta=200,avg=68], 
+done after 33
+13:20:
+
+begin
+[rep=1,min=18,delta=11,avg=3], [rep=12,min=15,delta=21,avg=4], [rep=17,min=15,delta=21,avg=3], [rep=36,min=36,delta=188,avg=39], 
+done after 36
+13:21:
+
+begin
+[rep=4,min=17,delta=14,avg=2], [rep=27,min=22,delta=11,avg=5], [rep=36,min=28,delta=168,avg=38], 
+done after 36
+13:22:
+
+begin
+[rep=34,min=35,delta=222,avg=108], 
+done after 34
+13:23:
+
+begin
+[rep=0,min=12,delta=11,avg=9], [rep=33,min=27,delta=31,avg=10], [rep=34,min=110,delta=129,avg=79], 
+done after 34
+13:24:
+
+begin
+[rep=37,min=31,delta=79,avg=14], [rep=38,min=113,delta=142,avg=90], 
+done after 38
+13:25:
+
+begin
+[rep=14,min=13,delta=12,avg=6], [rep=35,min=26,delta=13,avg=10], [rep=36,min=65,delta=167,avg=115], 
+done after 36
+13:26:
+
+begin
+[rep=1,min=12,delta=11,avg=8], [rep=24,min=19,delta=11,avg=6], [rep=33,min=23,delta=153,avg=28], 
+done after 33
+13:27:
+
+begin
+[rep=13,min=14,delta=11,avg=4], [rep=33,min=26,delta=12,avg=7], [rep=34,min=91,delta=143,avg=93], 
+done after 34
+13:28:
+
+begin
+[rep=13,min=11,delta=12,avg=7], [rep=19,min=15,delta=11,avg=8], [rep=34,min=29,delta=224,avg=115], 
+done after 34
+13:29:
+
+begin
+[rep=2,min=14,delta=24,avg=12], [rep=7,min=14,delta=23,avg=4], [rep=13,min=18,delta=18,avg=2], [rep=19,min=14,delta=22,avg=8], [rep=24,min=15,delta=11,avg=8], [rep=35,min=26,delta=124,avg=21], 
+done after 35
+13:30:
+
+begin
+[rep=29,min=25,delta=11,avg=7], [rep=35,min=32,delta=224,avg=149], 
+done after 35
+13:31:
+
+begin
+[rep=0,min=8,delta=12,avg=11], [rep=16,min=13,delta=11,avg=6], [rep=28,min=22,delta=11,avg=7], [rep=33,min=32,delta=201,avg=71], 
+done after 33
+13:32:
+
+begin
+[rep=17,min=15,delta=11,avg=3], [rep=34,min=29,delta=216,avg=97], 
+done after 34
+13:33:
+
+begin
+[rep=0,min=13,delta=13,avg=8], [rep=17,min=13,delta=12,avg=8], [rep=36,min=29,delta=209,avg=121], 
+done after 36
+13:34:
+
+begin
+[rep=26,min=25,delta=11,avg=7], [rep=38,min=40,delta=216,avg=117], 
+done after 38
+13:35:
+
+begin
+[rep=0,min=15,delta=16,avg=6], [rep=33,min=28,delta=216,avg=140], 
+done after 33
+13:36:
+
+begin
+[rep=32,min=34,delta=221,avg=147], 
+done after 32
+13:37:
+
+begin
+[rep=8,min=15,delta=17,avg=6], [rep=19,min=23,delta=11,avg=4], [rep=31,min=34,delta=13,avg=1], [rep=33,min=28,delta=163,avg=34], 
+done after 33
+13:38:
+
+begin
+[rep=34,min=25,delta=215,avg=80], 
+done after 34
+13:39:
+
+begin
+[rep=36,min=34,delta=201,avg=134], 
+done after 36
+13:40:
+
+begin
+[rep=1,min=16,delta=11,avg=4], [rep=34,min=39,delta=170,avg=27], 
+done after 34
+13:41:
+
+begin
+[rep=1,min=13,delta=12,avg=8], [rep=12,min=13,delta=11,avg=5], [rep=32,min=27,delta=160,avg=31], 
+done after 32
+13:42:
+
+begin
+[rep=3,min=15,delta=11,avg=7], [rep=8,min=12,delta=11,avg=8], [rep=33,min=23,delta=213,avg=151], 
+done after 33
+13:43:
+
+begin
+[rep=32,min=11,delta=11,avg=6], [rep=42,min=16,delta=186,avg=70], 
+done after 42
+13:44:
+
+begin
+[rep=7,min=12,delta=11,avg=8], [rep=18,min=9,delta=12,avg=6], [rep=33,min=18,delta=81,avg=13], 
+done after 33
+13:45:
+
+begin
+[rep=34,min=30,delta=201,avg=102], 
+done after 34
+13:46:
+
+begin
+[rep=8,min=16,delta=16,avg=2], [rep=13,min=15,delta=19,avg=2], [rep=19,min=18,delta=12,avg=1], [rep=24,min=18,delta=21,avg=3], [rep=30,min=20,delta=14,avg=4], [rep=33,min=18,delta=223,avg=83], 
+done after 33
+13:47:
+
+begin
+[rep=3,min=16,delta=15,avg=3], [rep=33,min=28,delta=173,avg=48], 
+done after 33
+13:48:
+
+begin
+[rep=4,min=12,delta=11,avg=6], [rep=34,min=21,delta=191,avg=53], 
+done after 34
+13:49:
+
+begin
+[rep=36,min=24,delta=213,avg=114], 
+done after 36
+13:50:
+
+begin
+[rep=0,min=13,delta=11,avg=8], [rep=1,min=13,delta=12,avg=9], [rep=7,min=14,delta=11,avg=7], [rep=13,min=12,delta=12,avg=5], [rep=24,min=13,delta=12,avg=9], [rep=33,min=18,delta=234,avg=145], 
+done after 33
+13:51:
+
+begin
+[rep=13,min=7,delta=13,avg=10], [rep=32,min=19,delta=103,avg=18], 
+done after 32
+13:52:
+
+begin
+[rep=10,min=11,delta=11,avg=7], [rep=21,min=10,delta=11,avg=8], [rep=35,min=18,delta=210,avg=106], 
+done after 35
+13:53:
+
+begin
+[rep=37,min=20,delta=67,avg=12], [rep=38,min=133,delta=107,avg=71], 
+done after 38
+13:54:
+
+begin
+[rep=33,min=19,delta=191,avg=54], 
+done after 33
+13:55:
+
+begin
+[rep=0,min=15,delta=19,avg=7], [rep=5,min=14,delta=21,avg=8], [rep=11,min=16,delta=16,avg=3], [rep=22,min=22,delta=12,avg=2], [rep=25,min=23,delta=18,avg=8], [rep=27,min=23,delta=17,avg=4], [rep=28,min=24,delta=18,avg=6], [rep=33,min=22,delta=20,avg=6], [rep=34,min=25,delta=134,avg=22], 
+done after 34
+13:56:
+
+begin
+[rep=33,min=17,delta=175,avg=45], 
+done after 33
+13:57:
+
+begin
+[rep=36,min=20,delta=221,avg=131], 
+done after 36
+13:58:
+
+begin
+[rep=34,min=19,delta=216,avg=100], 
+done after 34
+13:59:
+
+begin
+[rep=35,min=21,delta=184,avg=89], 
+done after 35
+14:00:
+
+begin
+[rep=31,min=25,delta=221,avg=102], 
+done after 31
+14:01:
+
+begin
+[rep=0,min=12,delta=12,avg=6], [rep=34,min=20,delta=202,avg=90], 
+done after 34
+14:02:
+
+begin
+[rep=33,min=25,delta=225,avg=99], 
+done after 33
+14:03:
+
+begin
+[rep=29,min=13,delta=16,avg=5], [rep=39,min=18,delta=197,avg=89], 
+done after 39
+14:04:
+
+begin
+[rep=1,min=20,delta=11,avg=2], [rep=7,min=15,delta=12,avg=5], [rep=18,min=19,delta=18,avg=3], [rep=24,min=21,delta=19,avg=4], [rep=29,min=20,delta=18,avg=5], [rep=35,min=20,delta=205,avg=91], 
+done after 35
+14:05:
+
+begin
+[rep=0,min=13,delta=11,avg=7], [rep=33,min=22,delta=209,avg=109], 
+done after 33
+14:06:
+
+begin
+[rep=37,min=21,delta=219,avg=112], 
+done after 37
+14:07:
+
+begin
+[rep=34,min=27,delta=219,avg=149], 
+done after 34
+14:08:
+
+begin
+[rep=3,min=13,delta=11,avg=7], [rep=20,min=12,delta=12,avg=8], [rep=34,min=24,delta=202,avg=62], 
+done after 34
+14:09:
+
+begin
+[rep=34,min=23,delta=201,avg=101], 
+done after 34
+14:10:
+
+begin
+[rep=34,min=26,delta=220,avg=73], 
+done after 34
+14:11:
+
+begin
+[rep=39,min=21,delta=234,avg=163], 
+done after 39
+14:12:
+
+begin
+[rep=15,min=12,delta=21,avg=7], [rep=16,min=16,delta=18,avg=5], [rep=21,min=12,delta=20,avg=8], [rep=26,min=17,delta=20,avg=8], [rep=32,min=20,delta=17,avg=7], [rep=35,min=26,delta=202,avg=91], 
+done after 35
+14:13:
+
+begin
+[rep=33,min=30,delta=197,avg=98], 
+done after 33
+14:14:
+
+begin
+[rep=32,min=12,delta=105,avg=16], 
+done after 32
+14:15:
+
+begin
+[rep=38,min=15,delta=209,avg=112], 
+done after 38
+14:16:
+
+begin
+[rep=33,min=21,delta=128,avg=19], 
+done after 33
+14:17:
+
+begin
+[rep=35,min=27,delta=37,avg=6], [rep=36,min=130,delta=123,avg=74], 
+done after 36
+14:18:
+
+begin
+[rep=11,min=18,delta=11,avg=2], [rep=32,min=25,delta=218,avg=86], 
+done after 32
+14:19:
+
+begin
+[rep=36,min=26,delta=218,avg=117], 
+done after 36
+14:20:
+
+begin
+[rep=0,min=14,delta=12,avg=7], [rep=39,min=37,delta=204,avg=52], 
+done after 39
+14:21:
+
+begin
+[rep=0,min=12,delta=12,avg=6], [rep=6,min=10,delta=11,avg=5], [rep=12,min=13,delta=15,avg=1], [rep=17,min=8,delta=20,avg=9], [rep=32,min=15,delta=13,avg=8], [rep=33,min=53,delta=175,avg=119], 
+done after 33
+14:22:
+
+begin
+[rep=35,min=29,delta=221,avg=132], 
+done after 35
+14:23:
+
+begin
+[rep=0,min=12,delta=12,avg=6], 
+--------------- CUT HERE FOR EXCEPTION DECODER ---------------
+
+Exception (0):
+epc1=0x4000dce5 epc2=0x00000000 epc3=0x00000000 excvaddr=0x00000000 depc=0x00000000
+
+>>>stack>>>
+
+ctx: cont
+sp: 3ffffdc0 end: 3fffffc0 offset: 0190
+3fffff50:  00000000 00000000 0000001a 40201100  
+3fffff60:  000002d0 00000001 00000001 00000000  
+3fffff70:  00000000 3ffee40c 000003e8 40201a34  
+3fffff80:  4020203d 000003e8 3ffee3b0 3ffee3b0  
+3fffff90:  3fffdad0 00000000 3ffee370 402011e5  
+3fffffa0:  feefeffe 00000000 3ffee370 40201b50  
+3fffffb0:  feefeffe feefeffe 3ffe84e0 40100c65  
+<<<stack<<<
+
+--------------- CUT HERE FOR EXCEPTION DECODER ---------------
+
+ ets Jan  8 2013,rst cause:2, boot mode:(3,6)
+
+load 0x4010f000, len 3584, room 16 
+tail 0
+chksum 0xb0
+csum 0xb0
+v2843a5ac
+~ld
+begin
+[rep=3,min=15,delta=12,avg=3], [rep=9,min=16,delta=11,avg=1], [rep=15,min=12,delta=17,avg=4], [rep=20,min=12,delta=17,avg=2], [rep=26,min=8,delta=11,avg=2], [rep=37,min=7,delta=12,avg=3], [rep=43,min=20,delta=220,avg=101], 
+done after 43
+00:01:
+
+begin
+[rep=0,min=13,delta=16,avg=7], [rep=33,min=30,delta=212,avg=126], 
+done after 33
+00:02:
+
+begin
+[rep=34,min=27,delta=231,avg=146], 
+done after 34
+00:03:
+
+begin
+[rep=37,min=23,delta=31,avg=10], [rep=38,min=106,delta=135,avg=80], 
+done after 38
+00:04:
+
+begin
+[rep=35,min=31,delta=211,avg=65], 
+done after 35
+00:05:
+
+begin
+[rep=33,min=26,delta=76,avg=9], [rep=34,min=109,delta=128,avg=84], 
+done after 34
+00:06:
+
+begin
+[rep=32,min=31,delta=215,avg=66], 
+done after 32
+00:07:
+
+begin
+[rep=34,min=88,delta=61,avg=12], [rep=35,min=203,delta=109,avg=65], 
+done after 35
+00:08:
+
+begin
+[rep=35,min=19,delta=47,avg=5], [rep=36,min=131,delta=117,avg=69], 
+done after 36
+00:09:
+
+begin
+[rep=5,min=10,delta=15,avg=4], [rep=11,min=-2,delta=16,avg=2], [rep=17,min=-11,delta=11,avg=2], [rep=18,min=-13,delta=13,avg=1], [rep=19,min=-15,delta=15,avg=1], [rep=20,min=-17,delta=17,avg=2], [rep=21,min=-17,delta=17,avg=2], [rep=22,min=-18,delta=18,avg=5], [rep=23,min=-21,delta=21,avg=2], [rep=24,min=-22,delta=22,avg=1], [rep=25,min=-18,delta=18,avg=3], [rep=26,min=-15,delta=15,avg=2], [rep=27,min=-15,delta=15,avg=3], [rep=28,min=-12,delta=18,avg=2], [rep=29,min=-12,delta=12,avg=1], [rep=30,min=-11,delta=11,avg=1], [rep=34,min=-11,delta=201,avg=94], 
+done after 34
+00:10:
+
+begin
+[rep=16,min=-15,delta=15,avg=6], [rep=34,min=-2,delta=215,avg=69], 
+done after 34
+00:11:
+
+begin
+[rep=0,min=8,delta=11,avg=9], [rep=34,min=47,delta=218,avg=108], 
+done after 34
+00:12:
+
+begin
+[rep=33,min=9,delta=206,avg=70], 
+done after 33
+00:13:
+
+begin
+[rep=0,min=12,delta=16,avg=10], [rep=11,min=12,delta=11,avg=6], [rep=36,min=23,delta=12,avg=8], [rep=37,min=46,delta=194,avg=137], 
+done after 37
+00:14:
+
+begin
+[rep=19,min=26,delta=14,avg=1], [rep=30,min=27,delta=12,avg=9], [rep=34,min=29,delta=157,avg=28], 
+done after 34
+00:15:
+
+begin
+[rep=34,min=42,delta=197,avg=130], 
+done after 34
+00:16:
+
+begin
+[rep=33,min=31,delta=66,avg=10], [rep=34,min=88,delta=166,avg=100], 
+done after 34
+00:17:
+
+begin
+[rep=19,min=17,delta=11,avg=1], [rep=31,min=11,delta=23,avg=10], [rep=32,min=83,delta=149,avg=86], 
+done after 32
+00:18:
+
+begin
+[rep=9,min=20,delta=18,avg=4], [rep=15,min=32,delta=11,avg=2], [rep=21,min=47,delta=12,avg=2], [rep=26,min=54,delta=18,avg=5], [rep=32,min=54,delta=18,avg=5], [rep=34,min=47,delta=182,avg=43], 
+done after 34
+00:19:
+
+begin
+[rep=39,min=41,delta=190,avg=69], 
+done after 39
+00:20:
+
+begin
+[rep=31,min=-1,delta=14,avg=7], [rep=32,min=57,delta=168,avg=124], 
+done after 32
+00:21:
+
+begin
+[rep=0,min=13,delta=12,avg=6], [rep=33,min=27,delta=161,avg=36], 
+done after 33
+00:22:
+
+begin
+[rep=37,min=10,delta=232,avg=116], 
+done after 37
+00:23:
+
+begin
+[rep=35,min=22,delta=178,avg=69], 
+done after 35
+00:24:
+
+begin
+[rep=33,min=15,delta=195,avg=72], 
+done after 33
+00:25:
+
+begin
+[rep=34,min=16,delta=206,avg=134], 
+done after 34
+00:26:
+
+begin
+[rep=32,min=20,delta=20,avg=6], [rep=33,min=14,delta=228,avg=137], 
+done after 33
+00:27:
+
+begin
+[rep=10,min=16,delta=14,avg=2], [rep=16,min=14,delta=11,avg=4], [rep=35,min=14,delta=187,avg=71], 
+done after 35
+00:28:
+
+begin
+[rep=25,min=16,delta=17,avg=9], [rep=35,min=16,delta=111,avg=17], 
+done after 35
+00:29:
+
+begin
+[rep=34,min=6,delta=195,avg=67], 
+done after 34
+00:30:
+
+begin
+[rep=19,min=15,delta=12,avg=2], [rep=32,min=12,delta=16,avg=11], [rep=33,min=40,delta=208,avg=149], 
+done after 33
+00:31:
+
+begin
+[rep=35,min=15,delta=199,avg=101], 
+done after 35
+00:32:
+
+begin
+[rep=36,min=18,delta=185,avg=44], 
+done after 36
+00:33:
+
+begin
+[rep=35,min=26,delta=11,avg=7], [rep=36,min=30,delta=202,avg=150], 
+done after 36
+00:34:
+
+begin
+[rep=32,min=14,delta=213,avg=67], 
+done after 32
+00:35:
+
+begin
+[rep=5,min=8,delta=11,avg=7], [rep=33,min=27,delta=15,avg=6], [rep=34,min=22,delta=178,avg=83], 
+done after 34
+00:36:
+
+begin
+[rep=5,min=12,delta=18,avg=9], [rep=11,min=13,delta=16,avg=9], [rep=16,min=18,delta=11,avg=4], [rep=32,min=25,delta=205,avg=79], 
+done after 32
+00:37:
+
+begin
+[rep=7,min=7,delta=11,avg=7], [rep=35,min=-1,delta=182,avg=41], 
+done after 35
+00:38:
+
+begin
+[rep=34,min=15,delta=201,avg=41], 
+done after 34
+00:39:
+
+begin
+[rep=0,min=13,delta=12,avg=6], [rep=34,min=20,delta=185,avg=41], 
+done after 34
+00:40:
+
+begin
+[rep=0,min=14,delta=12,avg=7], [rep=34,min=14,delta=206,avg=78], 
+done after 34
+00:41:
+
+begin
+[rep=0,min=13,delta=11,avg=6], [rep=35,min=19,delta=173,avg=40], 
+done after 35
+00:42:
+
+begin
+[rep=41,min=13,delta=224,avg=138], 
+done after 41
+00:43:
+
+begin
+[rep=32,min=21,delta=217,avg=110], 
+done after 32
+00:44:
+
+begin
+[rep=5,min=14,delta=18,avg=6], [rep=10,min=12,delta=22,avg=5], [rep=16,min=10,delta=20,avg=7], [rep=22,min=14,delta=20,avg=7], [rep=27,min=15,delta=14,avg=7], [rep=32,min=22,delta=33,avg=6], [rep=33,min=120,delta=121,avg=77], 
+done after 33
+00:45:
+
+begin
+[rep=0,min=12,delta=21,avg=8], [rep=35,min=18,delta=215,avg=149], 
+done after 35
+00:46:
+
+begin
+[rep=34,min=23,delta=229,avg=132], 
+done after 34
+00:47:
+
+begin
+[rep=36,min=20,delta=31,avg=4], [rep=37,min=112,delta=138,avg=93], 
+done after 37
+00:48:
+
+begin
+[rep=33,min=21,delta=221,avg=113], 
+done after 33
+00:49:
+
+begin
+[rep=35,min=26,delta=203,avg=104], 
+done after 35
+00:50:
+
+begin
+[rep=35,min=6,delta=51,avg=10], [rep=36,min=124,delta=118,avg=76], 
+done after 36
+00:51:
+
+begin
+[rep=36,min=4,delta=29,avg=3], [rep=37,min=100,delta=130,avg=91], 
+done after 37
+00:52:
+
+begin
+[rep=32,min=17,delta=228,avg=68], 
+done after 32
+00:53:
+
+begin
+[rep=9,min=13,delta=19,avg=4], [rep=15,min=13,delta=19,avg=3], [rep=36,min=21,delta=198,avg=44], 
+done after 36
+00:54:
+
+begin
+[rep=35,min=38,delta=212,avg=159], 
+done after 35
+00:55:
+
+begin
+[rep=0,min=12,delta=11,avg=6], [rep=6,min=17,delta=11,avg=1], [rep=34,min=19,delta=222,avg=136], 
+done after 34
+00:56:
+
+begin
+[rep=0,min=14,delta=11,avg=7], [rep=34,min=26,delta=168,avg=30], 
+done after 34
+00:57:
+
+begin
+[rep=0,min=13,delta=11,avg=7], [rep=36,min=21,delta=208,avg=147], 
+done after 36
+00:58:
+
+begin
+[rep=37,min=29,delta=199,avg=52], 
+done after 37
+00:59:
+
+begin
+[rep=35,min=23,delta=195,avg=78], 
+done after 35
+01:00:
+
+begin
+[rep=33,min=23,delta=51,avg=10], [rep=34,min=122,delta=133,avg=76], 
+done after 34
+01:01:
+
+begin
+[rep=28,min=21,delta=18,avg=5], [rep=33,min=23,delta=15,avg=5], [rep=34,min=19,delta=190,avg=69], 
+done after 34
+01:02:
+
+begin
+[rep=35,min=13,delta=72,avg=15], [rep=36,min=119,delta=126,avg=79], 
+done after 36
+01:03:
+
+begin
+[rep=34,min=19,delta=198,avg=75], 
+done after 34
+01:04:
+
+begin
+[rep=33,min=23,delta=206,avg=85], 
+done after 33
+01:05:
+
+begin
+[rep=2,min=-15,delta=15,avg=4], [rep=3,min=-25,delta=25,avg=5], [rep=4,min=-37,delta=37,avg=6], [rep=5,min=-46,delta=46,avg=5], [rep=6,min=-56,delta=56,avg=5], [rep=7,min=-63,delta=63,avg=4], [rep=8,min=-71,delta=71,avg=4], [rep=9,min=-79,delta=79,avg=6], [rep=10,min=-85,delta=85,avg=3], [rep=11,min=-91,delta=91,avg=4], [rep=12,min=-96,delta=96,avg=3], [rep=13,min=-101,delta=101,avg=3], [rep=14,min=-107,delta=107,avg=3], [rep=15,min=-110,delta=110,avg=2], [rep=16,min=-115,delta=115,avg=3], [rep=17,min=-118,delta=118,avg=2], [rep=18,min=-122,delta=122,avg=3], [rep=19,min=-124,delta=124,avg=1], [rep=20,min=-128,delta=128,avg=3], [rep=21,min=-132,delta=132,avg=2], 
+done after 21
+01:06:
+
+begin
+[rep=0,min=12,delta=11,avg=8], [rep=5,min=26,delta=19,avg=1], [rep=11,min=34,delta=18,avg=1], [rep=16,min=50,delta=15,avg=1], [rep=22,min=54,delta=12,avg=2], [rep=27,min=50,delta=14,avg=1], [rep=33,min=50,delta=11,avg=2], 
+--- exit ---
+Exception in thread rx:
+Traceback (most recent call last):
+  File "/Users/wolle/opt/anaconda3/lib/python3.7/site-packages/serial/serialposix.py", line 493, in read
+    buf = os.read(self.fd, size - len(read))
+OSError: [Errno 6] Device not configured
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/wolle/opt/anaconda3/lib/python3.7/threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "/Users/wolle/opt/anaconda3/lib/python3.7/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/wolle/opt/anaconda3/lib/python3.7/site-packages/serial/tools/miniterm.py", line 445, in reader
+    data = self.serial.read(self.serial.in_waiting or 1)
+  File "/Users/wolle/opt/anaconda3/lib/python3.7/site-packages/serial/serialposix.py", line 509, in read
+    raise SerialException('read failed: {}'.format(e))
+serial.serialutil.SerialException: read failed: [Errno 6] Device not configured
+
+
+Terminal will be reused by tasks, press any key to close it.
