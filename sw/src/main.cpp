@@ -1,5 +1,7 @@
 #include <Arduino.h>
 
+#define ESP_DRD_USE_EEPROM      true
+
 #include <ArduinoOTA.h>
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
@@ -7,8 +9,13 @@
 #include <ESP8266mDNS.h>
 #include <WiFiManager.h>
 #include <WiFiUdp.h>
+#include <ESP_DoubleResetDetector.h>
 
 #include <AceTime.h>
+
+DoubleResetDetector drd(10, 0);
+
+#define OTA 1
 
 #if !defined(NTP_SERVER)
 #define NTP_SERVER "pool.ntp.org"
@@ -65,6 +72,7 @@ void setupSntp()
         unsigned long nowMillis = millis();
         if ((unsigned long)(nowMillis - startMillis) >= REBOOT_TIMEOUT_MILLIS) {
             Serial.println(F(" FAILED! Rebooting..."));
+            drd.loop();
             delay(1000);
             ESP.reset();
         }
@@ -76,7 +84,6 @@ void setupSntp()
 int16_t currentDisplayedTime = 9 * 60 + 44;
 int16_t currentTime = 07 * 60 + 55;
 bool fastMode = true;
-boolean setUpDone = false;
 
 void setCurrentTime()
 {
@@ -84,6 +91,9 @@ void setCurrentTime()
     ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
         localTime, localZone);
     currentTime = zonedDateTime.minute() + zonedDateTime.hour() * 60;
+    if (zonedDateTime.second() > 57) {
+        currentTime += 1;
+    }
     zonedDateTime.printTo(Serial);
     Serial.printf(" - hour=%d, minute=%d\n", zonedDateTime.hour(), zonedDateTime.minute());
 }
@@ -111,22 +121,40 @@ void handleSet()
     int hour = server.arg("hour").toInt();
     int minute = server.arg("minute").toInt();
     currentDisplayedTime = (hour * 60 + minute) % 1440;
-    setUpDone = true;
     server.sendHeader("Location", "/");
     server.send(302, "text/plain", "");
 }
 
 void setup()
 {
+    Serial.begin(115200);
+    Serial.println(F("\nStarting FlipClock 2022 - Wolfgang Jung / Ideas In Logic\n"));
+
     pinMode(ENABLE, OUTPUT);
     pinMode(STEP, OUTPUT);
     pinMode(DIR, OUTPUT);
+    pinMode(D0, OUTPUT);
+    digitalWrite(D0, LOW);
+
     digitalWrite(ENABLE, HIGH);
-    digitalWrite(DIR, HIGH);
-    Serial.begin(115200);
     calculateBaseline();
-    WiFiManager wifiManager;
-    wifiManager.autoConnect("FlipClock");
+
+    WiFiManager wiFiManager;
+
+    if (drd.detectDoubleReset()) {
+        Serial.println(F("Reset WiFi configuration"));
+        wiFiManager.resetSettings();
+        wiFiManager.startConfigPortal("FlipClock", "");
+    }
+
+    Serial.println(F("Trying to connect to known WiFi"));
+
+    if (!wiFiManager.autoConnect("FlipClock")) {
+        Serial.println("failed to connect and hit timeout");
+        delay(3000);
+        // reset and try again, or maybe put it to deep sleep
+        ESP.reset();
+    }
 
     if (MDNS.begin("flipclock")) { // Start the mDNS responder for esp8266.local
         Serial.println("mDNS responder started");
@@ -195,26 +223,32 @@ bool advance()
 {
     digitalWrite(ENABLE, LOW);
     digitalWrite(STEP, HIGH);
+    digitalWrite(DIR, HIGH);
     delayMicroseconds(1);
     digitalWrite(STEP, LOW);
 
     static uint16_t advances = 0;
     advances++;
-    for (int count = 0; count < 50; count++) {
-        int val = analogRead(A0);
-        if (advances > 20) {
-            if (val < 0.9 * baseline || advances > 100) {
-                Serial.printf("val=%d, base=%d, advance=%d\n", val, baseline, advances);
-                advances = 0;
-                currentDisplayedTime++;
-                if (currentDisplayedTime >= 1440) {
-                    currentDisplayedTime -= 1440;
+    for (int count = 0; count < 3000; count++) {
+        if (count % 10 == 0) {
+            // digitalWrite(D0, HIGH);
+            int val = analogRead(A0);
+            // digitalWrite(D0, LOW);
+
+            if (advances > 20) {
+                if (val < 0.9 * baseline || advances > 100) {
+                    Serial.printf("val=%d, base=%d, advance=%d\n", val, baseline, advances);
+                    advances = 0;
+                    currentDisplayedTime++;
+                    if (currentDisplayedTime >= 1440) {
+                        currentDisplayedTime -= 1440;
+                    }
+                    Serial.printf("%02d:%02d  - %d/%d\n\n", (((1440 + currentDisplayedTime) / 60) % 24), (1440 + currentDisplayedTime) % 60, currentDisplayedTime, currentTime);
+                    if (fastMode == false) {
+                        digitalWrite(ENABLE, HIGH);
+                    }
+                    return true;
                 }
-                Serial.printf("%02d:%02d  - %d/%d\n\n", (((1440 + currentDisplayedTime) / 60) % 24), (1440 + currentDisplayedTime) % 60, currentDisplayedTime, currentTime);
-                if (fastMode == false) {
-                    digitalWrite(ENABLE, HIGH);
-                }
-                return true;
             }
         }
         delayMicroseconds(1);
@@ -228,24 +262,22 @@ void loop()
 #ifdef OTA
     ArduinoOTA.handle();
 #endif
-    if (setUpDone) {
-        if (currentDisplayedTime < currentTime) {
-            bool advanced = advance();
-            if (advanced) {
-                delay(500);
-            }
-        } else {
-            fastMode = false;
+    if (currentDisplayedTime < currentTime) {
+        bool advanced = advance();
+        if (advanced) {
+            delay(500);
         }
-        //
-        if (currentDisplayedTime > currentTime && currentTime >= 1 * 60 && currentTime <= 6 * 60) {
-            // just wait for time to arrive in the night
-        } else {
-            // if more than 10 minutes late: advance the whole day
-            if (currentDisplayedTime > currentTime + 10) {
-                fastMode = true;
-                currentDisplayedTime -= 1440;
-            }
+    } else {
+        fastMode = false;
+    }
+    //
+    if (currentDisplayedTime > currentTime && currentTime >= 1 * 60 && currentTime <= 6 * 60) {
+        // just wait for time to arrive in the night
+    } else {
+        // if more than 10 minutes late: advance the whole day
+        if (currentDisplayedTime > currentTime + 10) {
+            fastMode = true;
+            currentDisplayedTime -= 1440;
         }
     }
 
@@ -258,5 +290,6 @@ void loop()
         seconds++;
         setCurrentTime();
         calculateBaseline();
+        drd.loop();
     }
 }
