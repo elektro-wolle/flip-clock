@@ -95,7 +95,9 @@ void setCurrentTime()
         currentTime += 1;
     }
     zonedDateTime.printTo(Serial);
+#ifdef DEBUG
     Serial.printf(" - hour=%d, minute=%d\n", zonedDateTime.hour(), zonedDateTime.minute());
+#endif
 }
 
 void handleRoot()
@@ -134,7 +136,7 @@ void setup()
     pinMode(STEP, OUTPUT);
     pinMode(DIR, OUTPUT);
     pinMode(D0, OUTPUT);
-    digitalWrite(D0, LOW);
+    digitalWrite(D0, HIGH);
 
     digitalWrite(ENABLE, HIGH);
     calculateBaseline();
@@ -142,26 +144,33 @@ void setup()
     WiFiManager wiFiManager;
 
     if (drd.detectDoubleReset()) {
+        digitalWrite(ENABLE, LOW);
         Serial.println(F("Reset WiFi configuration"));
         wiFiManager.resetSettings();
         wiFiManager.startConfigPortal("FlipClock", "");
     }
 
+#ifdef DEBUG
     Serial.println(F("Trying to connect to known WiFi"));
-
+#endif
     if (!wiFiManager.autoConnect("FlipClock")) {
+        digitalWrite(ENABLE, LOW);
         Serial.println("failed to connect and hit timeout");
         delay(3000);
+        digitalWrite(ENABLE, HIGH);
         // reset and try again, or maybe put it to deep sleep
         ESP.reset();
     }
 
     if (MDNS.begin("flipclock")) { // Start the mDNS responder for esp8266.local
+#ifdef DEBUG
         Serial.println("mDNS responder started");
+#endif
     } else {
         Serial.println("Error setting up MDNS responder!");
     }
 
+    digitalWrite(ENABLE, LOW);
     server.on("/", HTTP_GET, handleRoot);
     server.on("/set", HTTP_POST, handleSet);
     server.onNotFound([]() {
@@ -199,7 +208,9 @@ void setup()
         Serial.println("\nEnd");
     });
     ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+#ifdef DEBUG        
         Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+#endif        
     });
     ArduinoOTA.onError([](ota_error_t error) {
         Serial.printf("Error[%u]: ", error);
@@ -217,6 +228,7 @@ void setup()
     });
     ArduinoOTA.begin();
 #endif
+    digitalWrite(ENABLE, HIGH);
 }
 
 bool advance()
@@ -238,7 +250,9 @@ bool advance()
 
             if (advances > 10) {
                 if (val < 0.95 * baseline) {
+#ifdef DEBUG
                     Serial.printf("%d: triggers=%d, val=%d, base=%d, advance=%d\n", count, triggerCount, val, baseline, advances);
+#endif
                     triggerCount++;
                     if (triggerCount > 3 || advances > 50) {
                         advances = 0;
@@ -246,7 +260,9 @@ bool advance()
                         if (currentDisplayedTime >= 1440) {
                             currentDisplayedTime -= 1440;
                         }
+#ifdef DEBUG
                         Serial.printf("%02d:%02d  - %d/%d\n\n", (((1440 + currentDisplayedTime) / 60) % 24), (1440 + currentDisplayedTime) % 60, currentDisplayedTime, currentTime);
+#endif
                         if (fastMode == false) {
                             digitalWrite(ENABLE, HIGH);
                         }
