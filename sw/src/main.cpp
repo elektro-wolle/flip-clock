@@ -301,5 +301,6 @@ void loop()
         seconds++;
         setCurrentTime();
         drd.loop();
+        MDNS.update();
     }
 }
