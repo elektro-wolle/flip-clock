@@ -1,15 +1,15 @@
 #include <Arduino.h>
 
-#define ESP_DRD_USE_EEPROM      true
+#define ESP_DRD_USE_EEPROM true
 
 #include <ArduinoOTA.h>
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
+#include <ESP_DoubleResetDetector.h>
 #include <WiFiManager.h>
 #include <WiFiUdp.h>
-#include <ESP_DoubleResetDetector.h>
 
 #include <AceTime.h>
 
@@ -45,12 +45,12 @@ static uint16_t baseline = 0;
 
 void calculateBaseline()
 {
-    int base = 0;
-    for (int x = 0; x < 50; x++) {
-        base += analogRead(A0);
-        delay(1);
+    int base = 1024;
+    for (int x = 0; x < 10; x++) {
+        base = min(base, analogRead(A0));
+        delayMicroseconds(100);
     }
-    baseline = base / 50;
+    baseline = base;
 }
 
 void setupSntp()
@@ -229,26 +229,33 @@ bool advance()
 
     static uint16_t advances = 0;
     advances++;
+    uint16_t triggerCount = 0;
     for (int count = 0; count < 3000; count++) {
         if (count % 10 == 0) {
             // digitalWrite(D0, HIGH);
             int val = analogRead(A0);
             // digitalWrite(D0, LOW);
 
-            if (advances > 20) {
-                if (val < 0.9 * baseline || advances > 100) {
-                    Serial.printf("val=%d, base=%d, advance=%d\n", val, baseline, advances);
-                    advances = 0;
-                    currentDisplayedTime++;
-                    if (currentDisplayedTime >= 1440) {
-                        currentDisplayedTime -= 1440;
+            if (advances > 10) {
+                if (val < 0.95 * baseline) {
+                    Serial.printf("%d: triggers=%d, val=%d, base=%d, advance=%d\n", count, triggerCount, val, baseline, advances);
+                    triggerCount++;
+                    if (triggerCount > 3 || advances > 50) {
+                        advances = 0;
+                        currentDisplayedTime++;
+                        if (currentDisplayedTime >= 1440) {
+                            currentDisplayedTime -= 1440;
+                        }
+                        Serial.printf("%02d:%02d  - %d/%d\n\n", (((1440 + currentDisplayedTime) / 60) % 24), (1440 + currentDisplayedTime) % 60, currentDisplayedTime, currentTime);
+                        if (fastMode == false) {
+                            digitalWrite(ENABLE, HIGH);
+                        }
+                        return true;
                     }
-                    Serial.printf("%02d:%02d  - %d/%d\n\n", (((1440 + currentDisplayedTime) / 60) % 24), (1440 + currentDisplayedTime) % 60, currentDisplayedTime, currentTime);
-                    if (fastMode == false) {
-                        digitalWrite(ENABLE, HIGH);
-                    }
-                    return true;
                 }
+
+            } else if (advances == 5) {
+                calculateBaseline();
             }
         }
         delayMicroseconds(1);
@@ -263,15 +270,19 @@ void loop()
     ArduinoOTA.handle();
 #endif
     if (currentDisplayedTime < currentTime) {
-        bool advanced = advance();
-        if (advanced) {
-            delay(500);
+        static unsigned long waitTime = millis();
+        if (millis() > waitTime) {
+            bool advanced = advance();
+            if (advanced) {
+                waitTime = millis() + 1000;
+            }
         }
     } else {
         fastMode = false;
     }
     //
     if (currentDisplayedTime > currentTime && currentTime >= 1 * 60 && currentTime <= 6 * 60) {
+        fastMode = false;
         // just wait for time to arrive in the night
     } else {
         // if more than 10 minutes late: advance the whole day
@@ -289,7 +300,6 @@ void loop()
         lastMillis = now;
         seconds++;
         setCurrentTime();
-        calculateBaseline();
         drd.loop();
     }
 }
