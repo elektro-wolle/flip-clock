@@ -13,6 +13,8 @@
 
 #include <AceTime.h>
 
+#include <list>
+
 DoubleResetDetector drd(10, 0);
 
 #define OTA 1
@@ -20,6 +22,32 @@ DoubleResetDetector drd(10, 0);
 #if !defined(NTP_SERVER)
 #define NTP_SERVER "pool.ntp.org"
 #endif
+
+#define DEBUG 1
+
+class Logger : public Print {
+
+public:
+    size_t write(uint8_t c)
+    {
+        if (c == '\n') {
+            lastItems.push_back(currentLine);
+            if (lastItems.size() > 100) {
+                lastItems.pop_front();
+            }
+            currentLine = String("");
+        } else {
+            currentLine += (char)c;
+        }
+        return 1;
+    }
+    std::list<String> lastItems;
+
+private:
+    String currentLine = String("");
+};
+
+Logger logger;
 
 static const time_t EPOCH_2000_01_01 = 946684800;
 static const unsigned long REBOOT_TIMEOUT_MILLIS = 15000;
@@ -41,16 +69,20 @@ ESP8266WebServer server(80);
 // DIR auf D3 = 0
 #define DIR 0
 
-static uint16_t baseline = 0;
+static uint16_t irPhotoDiodeBaseLine = 0;
+int16_t currentDisplayedTime = 9 * 60 + 44;
+int16_t currentTime = 07 * 60 + 55;
+bool fastMode = true;
+bool minuteDisplayFlipped = false;
 
 void calculateBaseline()
 {
-    int base = 1024;
+    int base = 0;
     for (int x = 0; x < 10; x++) {
-        base = min(base, analogRead(A0));
-        delayMicroseconds(100);
+        base += analogRead(A0);
+        delayMicroseconds(10);
     }
-    baseline = base;
+    irPhotoDiodeBaseLine = base / 10;
 }
 
 void setupSntp()
@@ -81,10 +113,6 @@ void setupSntp()
     }
 }
 
-int16_t currentDisplayedTime = 9 * 60 + 44;
-int16_t currentTime = 07 * 60 + 55;
-bool fastMode = true;
-
 void setCurrentTime()
 {
     time_t localTime = time(nullptr);
@@ -94,9 +122,10 @@ void setCurrentTime()
     if (zonedDateTime.second() > 57) {
         currentTime += 1;
     }
-    zonedDateTime.printTo(Serial);
+
 #ifdef DEBUG
-    Serial.printf(" - hour=%d, minute=%d\n", zonedDateTime.hour(), zonedDateTime.minute());
+    zonedDateTime.printTo(logger);
+    logger.printf(" - hour=%d, minute=%d\n", zonedDateTime.hour(), zonedDateTime.minute());
 #endif
 }
 
@@ -105,16 +134,26 @@ void handleRoot()
     int hour = (((1440 + currentDisplayedTime) / 60) % 24);
     int minute = (1440 + currentDisplayedTime) % 60;
 
+    int a_hour = (((1440 + currentTime) / 60) % 24);
+    int a_minute = (1440 + currentTime) % 60;
+
     String webpage = "<!DOCTYPE html><html><head>";
     webpage += "<title>FlipClock</title><style>";
-    webpage += "body {width:100%;margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;}";
-    webpage += "</style></head><body><h1>FlipClock</h1>";
+    webpage += "body {margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;} ul{text-align: left}";
+    webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1>";
     webpage += "Aktuell angezeigte Zeit:</br>";
     webpage += "<form action=\"/set\" method=\"POST\">";
     webpage += "Stunde: <input type=\"number\" name=\"hour\" value=\"" + String(hour) + "\" min=\"0\" max=\"23\"></br>";
     webpage += "Minute: <input type=\"number\" name=\"minute\" value=\"" + String(minute) + "\" min=\"0\" max=\"59\"></br>";
-    webpage += "<input type=\"submit\" value=\"Speichern\"></form>";
-    webpage += "</body></html>";
+    webpage += "<input type=\"submit\" value=\"Speichern\"></form><br/>";
+    webpage += "Aktuelle Zeit: ";
+    webpage += String(a_hour) + ":" + String(a_minute) + "</br><ul>";
+    for (std::list<String>::reverse_iterator line = logger.lastItems.rbegin();
+         line != logger.lastItems.rend();
+         line++) {
+        webpage += "<li><pre>" + (*line) + "</pre></li>";
+    }
+    webpage += "</ul></body></html>";
     server.send(200, "text/html", webpage);
 }
 
@@ -151,7 +190,7 @@ void setup()
     }
 
 #ifdef DEBUG
-    Serial.println(F("Trying to connect to known WiFi"));
+    logger.println(F("Trying to connect to known WiFi"));
 #endif
     if (!wiFiManager.autoConnect("FlipClock")) {
         digitalWrite(ENABLE, LOW);
@@ -164,10 +203,10 @@ void setup()
 
     if (MDNS.begin("flipclock")) { // Start the mDNS responder for esp8266.local
 #ifdef DEBUG
-        Serial.println("mDNS responder started");
+        logger.println("mDNS responder started");
 #endif
     } else {
-        Serial.println("Error setting up MDNS responder!");
+        logger.println("Error setting up MDNS responder!");
     }
 
     digitalWrite(ENABLE, LOW);
@@ -208,9 +247,9 @@ void setup()
         Serial.println("\nEnd");
     });
     ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
-#ifdef DEBUG        
-        Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
-#endif        
+#ifdef DEBUG
+        logger.printf("Progress: %u%%\r", (progress / (total / 100)));
+#endif
     });
     ArduinoOTA.onError([](ota_error_t error) {
         Serial.printf("Error[%u]: ", error);
@@ -239,39 +278,58 @@ bool advance()
     delayMicroseconds(1);
     digitalWrite(STEP, LOW);
 
-    static uint16_t advances = 0;
-    advances++;
+    static uint16_t stepperMotorSteps = 0;
+    stepperMotorSteps++;
     uint16_t triggerCount = 0;
+    int minValue = 1024;
+    int maxValue = 0;
     for (int count = 0; count < 3000; count++) {
         if (count % 10 == 0) {
             // digitalWrite(D0, HIGH);
             int val = analogRead(A0);
+            minValue = min(minValue, val);
+            maxValue = max(maxValue, val);
             // digitalWrite(D0, LOW);
 
-            if (advances > 10) {
-                if (val < 0.95 * baseline) {
+            if (stepperMotorSteps > 5) {
+                if (val < 0.95 * irPhotoDiodeBaseLine || stepperMotorSteps > 50) {
 #ifdef DEBUG
-                    Serial.printf("%d: triggers=%d, val=%d, base=%d, advance=%d\n", count, triggerCount, val, baseline, advances);
+                    logger.printf("%d: triggers=%d, val=%d, base=%d, advance=%d -> %d/%d\n",
+                        count,
+                        triggerCount,
+                        val, irPhotoDiodeBaseLine,
+                        stepperMotorSteps,
+                        minValue,
+                        maxValue);
 #endif
                     triggerCount++;
-                    if (triggerCount > 3 || advances > 50) {
-                        advances = 0;
-                        currentDisplayedTime++;
-                        if (currentDisplayedTime >= 1440) {
-                            currentDisplayedTime -= 1440;
-                        }
-#ifdef DEBUG
-                        Serial.printf("%02d:%02d  - %d/%d\n\n", (((1440 + currentDisplayedTime) / 60) % 24), (1440 + currentDisplayedTime) % 60, currentDisplayedTime, currentTime);
-#endif
-                        if (fastMode == false) {
-                            digitalWrite(ENABLE, HIGH);
-                        }
-                        return true;
+                    if (triggerCount > 3 || stepperMotorSteps > 50) {
+                        minuteDisplayFlipped = true;
                     }
                 }
 
-            } else if (advances == 5) {
+            } else if (stepperMotorSteps == 5) {
                 calculateBaseline();
+            }
+
+            if (minuteDisplayFlipped) {
+                currentDisplayedTime++;
+                if (currentDisplayedTime >= 1440) {
+                    currentDisplayedTime -= 1440;
+                }
+#ifdef DEBUG
+                logger.printf("%02d:%02d  - %d/%d steps=%d\n\n",
+                    (((1440 + currentDisplayedTime) / 60) % 24),
+                    (1440 + currentDisplayedTime) % 60,
+                    currentDisplayedTime,
+                    currentTime,
+                    stepperMotorSteps);
+#endif
+                stepperMotorSteps = 0;
+                if (fastMode == false) {
+                    digitalWrite(ENABLE, HIGH);
+                }
+                return true;
             }
         }
         delayMicroseconds(1);
@@ -286,10 +344,12 @@ void loop()
     ArduinoOTA.handle();
 #endif
     if (currentDisplayedTime < currentTime) {
+        fastMode = true;
         static unsigned long waitTime = millis();
         if (millis() > waitTime) {
             bool advanced = advance();
             if (advanced) {
+                minuteDisplayFlipped = false;
                 waitTime = millis() + 1000;
             }
         }
@@ -311,10 +371,8 @@ void loop()
     static unsigned long lastMillis = millis();
     unsigned long now = millis();
     if (now >= lastMillis + 1000) {
-        static int seconds = 0;
-
+        // run every second
         lastMillis = now;
-        seconds++;
         setCurrentTime();
         drd.loop();
         MDNS.update();
