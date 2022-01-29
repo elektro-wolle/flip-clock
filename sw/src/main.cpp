@@ -15,8 +15,6 @@
 
 #include <list>
 
-DoubleResetDetector drd(10, 0);
-
 #define OTA 1
 
 #if !defined(NTP_SERVER)
@@ -24,6 +22,23 @@ DoubleResetDetector drd(10, 0);
 #endif
 
 #define DEBUG 1
+
+#define STATS_ADDRESS 10
+#define DRD_ADDRESS   4
+#define EEPROM_MAGIC_NUMBER 0xdeadbeef
+
+typedef struct {
+    uint32_t magicNumber;
+    uint32_t previousSecondsTotal;
+    uint32_t uptimeSecondsTotal;
+    uint32_t uptimeSeconds;
+    uint16_t reboots;
+    uint16_t skipped;
+} statistics_t;
+
+statistics_t globalStats;
+
+DoubleResetDetector drd(DRD_ADDRESS, 0);
 
 class Logger : public Print {
 
@@ -139,21 +154,31 @@ void handleRoot()
 
     String webpage = "<!DOCTYPE html><html><head>";
     webpage += "<title>FlipClock</title><style>";
-    webpage += "body {margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;} ul{text-align: left}";
+    webpage += "body {margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;} .info { margin-left: 25%; text-align: left; width: 300px; } ul li {text-align: left;max-width: 500px;}";
     webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1>";
     webpage += "Aktuell angezeigte Zeit:</br>";
     webpage += "<form action=\"/set\" method=\"POST\">";
     webpage += "Stunde: <input type=\"number\" name=\"hour\" value=\"" + String(hour) + "\" min=\"0\" max=\"23\"></br>";
     webpage += "Minute: <input type=\"number\" name=\"minute\" value=\"" + String(minute) + "\" min=\"0\" max=\"59\"></br>";
     webpage += "<input type=\"submit\" value=\"Speichern\"></form><br/>";
+    
+    webpage += "<div class='info'>";
     webpage += "Aktuelle Zeit: ";
-    webpage += String(a_hour) + ":" + String(a_minute) + "</br><ul>";
+    webpage += String(a_hour) + ":" + String(a_minute) + "</br>";
+    webpage += "Stats:<br>";
+    webpage += "Uptime seit letztem Reset:" + String(globalStats.uptimeSeconds) + "<br/>";
+    webpage += "Uptime:" + String(globalStats.uptimeSecondsTotal) + "<br/>";
+    webpage += "Skip error count:" + String(globalStats.skipped) + "<br/>";
+    webpage += "Reboots:" + String(globalStats.reboots) + "<br/>";
+
+    webpage += "Logs:<br/><ul>";
     for (std::list<String>::reverse_iterator line = logger.lastItems.rbegin();
          line != logger.lastItems.rend();
          line++) {
         webpage += "<li><pre>" + (*line) + "</pre></li>";
     }
-    webpage += "</ul></body></html>";
+    webpage += "</ul>";
+    webpage +=" </div></body></html>";
     server.send(200, "text/html", webpage);
 }
 
@@ -166,8 +191,28 @@ void handleSet()
     server.send(302, "text/plain", "");
 }
 
+void readFromEEProm() {
+    // EEPROM.begin(sizeof(statistics_t));
+    // Already got begin() called by DRD constructor
+    EEPROM.get(STATS_ADDRESS, globalStats);
+    if (globalStats.magicNumber != EEPROM_MAGIC_NUMBER) {
+        globalStats.magicNumber = EEPROM_MAGIC_NUMBER;
+        globalStats.reboots = 0;
+        globalStats.skipped = 0;
+        globalStats.uptimeSeconds = 0;
+        globalStats.uptimeSecondsTotal = 0;
+        globalStats.previousSecondsTotal = 0;
+        EEPROM.put(STATS_ADDRESS, globalStats);
+        EEPROM.commit();
+    }
+    globalStats.previousSecondsTotal = globalStats.uptimeSecondsTotal;
+}
+
 void setup()
 {
+    readFromEEProm();
+    globalStats.uptimeSeconds = 0;
+
     Serial.begin(115200);
     Serial.println(F("\nStarting FlipClock 2022 - Wolfgang Jung / Ideas In Logic\n"));
 
@@ -216,6 +261,9 @@ void setup()
         server.send(404, "text/plain", "404: Not found");
     });
     server.begin();
+
+    globalStats.reboots++;
+    EEPROM.put(STATS_ADDRESS, globalStats);
 
     setupSntp();
     setCurrentTime();
@@ -304,6 +352,9 @@ bool advance()
 #endif
                     triggerCount++;
                     if (triggerCount > 3 || stepperMotorSteps > 50) {
+                        if (stepperMotorSteps > 50) {
+                            globalStats.skipped++;
+                        }
                         minuteDisplayFlipped = true;
                     }
                 }
@@ -336,6 +387,8 @@ bool advance()
     }
     return false;
 }
+
+uint32_t lastEepromWrite = 0;
 
 void loop()
 {
@@ -373,8 +426,16 @@ void loop()
     if (now >= lastMillis + 1000) {
         // run every second
         lastMillis = now;
+        globalStats.uptimeSeconds = (now / 1000);
+        globalStats.uptimeSecondsTotal = globalStats.previousSecondsTotal + globalStats.uptimeSeconds;
+        EEPROM.put(STATS_ADDRESS, globalStats);
+
         setCurrentTime();
         drd.loop();
         MDNS.update();
+    }
+    if (now > lastEepromWrite + (1000 * 60 * 15)) { // every 15 minutes        
+        EEPROM.commit();
+        lastEepromWrite = now;
     }
 }
