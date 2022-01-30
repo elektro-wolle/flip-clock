@@ -24,7 +24,7 @@
 #define DEBUG 1
 
 #define STATS_ADDRESS 10
-#define DRD_ADDRESS   4
+#define DRD_ADDRESS 4
 #define EEPROM_MAGIC_NUMBER 0xdeadbeef
 
 typedef struct {
@@ -34,6 +34,7 @@ typedef struct {
     uint32_t uptimeSeconds;
     uint16_t reboots;
     uint16_t skipped;
+    uint32_t zoneId;
 } statistics_t;
 
 statistics_t globalStats;
@@ -65,15 +66,20 @@ private:
 Logger logger;
 
 static const time_t EPOCH_2000_01_01 = 946684800;
-static const unsigned long REBOOT_TIMEOUT_MILLIS = 15000;
+static const unsigned long REBOOT_TIMEOUT_MILLIS = 5000;
 
 using namespace ace_time;
+using namespace ace_time::zonedbx;
 static const int CACHE_SIZE = 3;
+ExtendedZoneProcessorCache<1> zoneProcessorCache;
 static ExtendedZoneProcessor localZoneProcessor;
-static TimeZone localZone = TimeZone::forZoneInfo(
-    &zonedbx::kZoneEurope_Berlin,
-    &localZoneProcessor);
-;
+
+ExtendedZoneManager zoneManager(
+    zonedbx::kZoneRegistrySize,
+    zonedbx::kZoneRegistry,
+    zoneProcessorCache);
+
+static TimeZone localZone = zoneManager.createForZoneInfo(&zonedbx::kZoneEurope_Berlin);
 
 ESP8266WebServer server(80);
 
@@ -152,7 +158,7 @@ void handleRoot()
     int a_hour = (((1440 + currentTime) / 60) % 24);
     int a_minute = (1440 + currentTime) % 60;
 
-    String webpage = "<!DOCTYPE html><html><head>";
+    String webpage = "<!DOCTYPE html><html><head><meta charset='iso-8859-1'/>";
     webpage += "<title>FlipClock</title><style>";
     webpage += "body {margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;} .info { margin-left: 25%; text-align: left; width: 300px; } ul li {text-align: left;max-width: 500px;}";
     webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1>";
@@ -160,8 +166,26 @@ void handleRoot()
     webpage += "<form action=\"/set\" method=\"POST\">";
     webpage += "Stunde: <input type=\"number\" name=\"hour\" value=\"" + String(hour) + "\" min=\"0\" max=\"23\"></br>";
     webpage += "Minute: <input type=\"number\" name=\"minute\" value=\"" + String(minute) + "\" min=\"0\" max=\"59\"></br>";
+    webpage += "<select name='zone'>";
+
+    uint16_t indexes[zonedbx::kZoneRegistrySize];
+    ace_time::ZoneSorterByName<ExtendedZoneManager> zoneSorter(zoneManager);
+    zoneSorter.fillIndexes(indexes, zonedbx::kZoneRegistrySize);
+    zoneSorter.sortIndexes(indexes, zonedbx::kZoneRegistrySize);
+    for (int i = 0; i < zonedbx::kZoneRegistrySize; i++) {
+        ace_common::PrintStr<32> printStr;
+        ExtendedZone zone = zoneManager.getZoneForIndex(indexes[i]);
+        zone.printNameTo(printStr);
+        webpage += "<option value='" + String(indexes[i]) + "'";
+        if (zone.zoneId() == globalStats.zoneId) {
+            webpage += " selected='selected'";
+        }
+        webpage += ">" + String(printStr.getCstr()) + "</option>";
+    }
+    webpage += "</select>";
+
     webpage += "<input type=\"submit\" value=\"Speichern\"></form><br/>";
-    
+
     webpage += "<div class='info'>";
     webpage += "Aktuelle Zeit: ";
     webpage += String(a_hour) + ":" + String(a_minute) + "</br>";
@@ -178,7 +202,7 @@ void handleRoot()
         webpage += "<li><pre>" + (*line) + "</pre></li>";
     }
     webpage += "</ul>";
-    webpage +=" </div></body></html>";
+    webpage += " </div></body></html>";
     server.send(200, "text/html", webpage);
 }
 
@@ -186,12 +210,18 @@ void handleSet()
 {
     int hour = server.arg("hour").toInt();
     int minute = server.arg("minute").toInt();
+    int zoneIdx = server.arg("zone").toInt();
     currentDisplayedTime = (hour * 60 + minute) % 1440;
+
+    localZone = zoneManager.createForZoneIndex(zoneIdx);
+    globalStats.zoneId = localZone.getZoneId();
+
     server.sendHeader("Location", "/");
     server.send(302, "text/plain", "");
 }
 
-void readFromEEProm() {
+void readFromEEProm()
+{
     // EEPROM.begin(sizeof(statistics_t));
     // Already got begin() called by DRD constructor
     EEPROM.get(STATS_ADDRESS, globalStats);
@@ -202,18 +232,28 @@ void readFromEEProm() {
         globalStats.uptimeSeconds = 0;
         globalStats.uptimeSecondsTotal = 0;
         globalStats.previousSecondsTotal = 0;
+        globalStats.zoneId = zonedbx::kZoneIdEurope_Berlin;
         EEPROM.put(STATS_ADDRESS, globalStats);
-        EEPROM.commit();
     }
     globalStats.previousSecondsTotal = globalStats.uptimeSecondsTotal;
+    localZone = zoneManager.createForZoneId(globalStats.zoneId);
+    if (localZone.isError()) {
+        globalStats.zoneId = zonedbx::kZoneIdEurope_Berlin;
+        localZone = zoneManager.createForZoneId(globalStats.zoneId);
+        EEPROM.put(STATS_ADDRESS, globalStats);
+    }
+    Serial.print("Using Timezone: ");
+    localZone.printTo(Serial);
+    Serial.println();
+    EEPROM.commit();
 }
 
 void setup()
 {
+    Serial.begin(115200);
     readFromEEProm();
     globalStats.uptimeSeconds = 0;
 
-    Serial.begin(115200);
     Serial.println(F("\nStarting FlipClock 2022 - Wolfgang Jung / Ideas In Logic\n"));
 
     pinMode(ENABLE, OUTPUT);
@@ -407,6 +447,7 @@ void loop()
             }
         }
     } else {
+        digitalWrite(ENABLE, HIGH);
         fastMode = false;
     }
     //
@@ -434,7 +475,7 @@ void loop()
         drd.loop();
         MDNS.update();
     }
-    if (now > lastEepromWrite + (1000 * 60 * 15)) { // every 15 minutes        
+    if (now > lastEepromWrite + (1000 * 60 * 15)) { // every 15 minutes
         EEPROM.commit();
         lastEepromWrite = now;
     }
