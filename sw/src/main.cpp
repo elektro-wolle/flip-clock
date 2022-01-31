@@ -128,6 +128,18 @@ void setupSntp()
     }
 }
 
+String secondsToString(uint32_t seconds)
+{
+    String result = "";
+    if (seconds > 86400) {
+        result = String(seconds / 86400) + "d ";
+    }
+    result = result + String((seconds / 3600) % 24) + "h ";
+    result = result + String((seconds / 60) % 60) + "m ";
+    result = result + String(seconds % 60) + "s";
+    return result;
+}
+
 void handleRoot()
 {
     int hour = (((1440 + currentDisplayedTime) / 60) % 24);
@@ -137,13 +149,13 @@ void handleRoot()
 
     String webpage = "<!DOCTYPE html><html><head><meta charset='iso-8859-1'/>\n";
     webpage += "<title>FlipClock</title><style>\n";
-    webpage += "body {margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;} .info { margin-left: 25%; text-align: left; width: 300px; } ul li {text-align: left;max-width: 500px;}\n";
-    webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1>\n";
-    webpage += "Aktuell angezeigte Zeit:</br>\n";
-    webpage += "<form action=\"/set\" method=\"POST\">\n";
-    webpage += "Stunde: <input type=\"number\" name=\"hour\" value=\"" + String(hour) + "\" min=\"0\" max=\"23\"></br>";
-    webpage += "Minute: <input type=\"number\" name=\"minute\" value=\"" + String(minute) + "\" min=\"0\" max=\"59\"></br>";
-    webpage += "<select name='zone'>\n";
+    webpage += "body{margin-left:5em;margin-right:5em;font-family:sans-serif;font-size:14px;color:darkslategray;background-color:#EEE}h1{text-align:center}.info{width:100%;text-align:left;font-size:18pt}input,main,option,select,th{font-size:24pt;text-align:left}input{width:100%}input[type='submit']{width:min-content;float:right;text-align:right}main{font-size:16pt;vertical-align:middle}.info{line-height:2em}.info br{margin-left:3em}.logs{margin-top:2em;padding-top:2em;overflow-x:auto;border-top:black 2px solid}ul li{text-align:left}\n";
+    webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1><div class='main'>\n";
+    webpage += "<h2>Aktuell angezeigte Zeit:</h2>\n";
+    webpage += "<form action=\"/set\" method=\"POST\"><table>\n";
+    webpage += "<tr><th>Stunde:</th><td><input type=\"number\" name=\"hour\" value=\"" + String(hour) + "\" min=\"0\" max=\"23\"></td></tr>";
+    webpage += "<tr><th>Minute:</th><td><input type=\"number\" name=\"minute\" value=\"" + String(minute) + "\" min=\"0\" max=\"59\"></td></tr>";
+    webpage += "<tr><th>Zeitzone:</th><td><select name='zone'>\n";
     server.sendContent(webpage);
 
     uint16_t indexes[zonedbx::kZoneRegistrySize];
@@ -162,9 +174,10 @@ void handleRoot()
         server.sendContent(webpage);
     }
 
-    webpage = "</select><input type=\"submit\" value=\"Speichern\"></form><br/>\n";
+    webpage = "</select></td></tr>";
+    webpage += "<tr><th></th><td><input id='save' type=\"submit\" value=\"Speichern\"></td></tr></table></form><br/></div>\n";
     webpage += "<div class='info'>";
-    webpage += "Aktuelle Zeit: ";
+    webpage += "<div class='time'><h2>Aktuelle Zeit</h2><tt>";
 
     time_t localTime = time(nullptr);
     ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
@@ -172,14 +185,15 @@ void handleRoot()
     ace_common::PrintStr<60> currentTimeStr;
     zonedDateTime.printTo(currentTimeStr);
 
-    webpage += String(currentTimeStr.getCstr()) + "</br>\n";
-    webpage += "Stats:<br>\n";
-    webpage += "Uptime seit letztem Reset:" + String(globalStats.uptimeSeconds) + "<br/>\n";
-    webpage += "Uptime:" + String(globalStats.uptimeSecondsTotal) + "<br/>\n";
+    webpage += String(currentTimeStr.getCstr()) + "</tt></div></br>\n";
+    webpage += "<div class='stats'><h2>Stats</h2>\n";
+    webpage += "Uptime seit letztem Reset:" + secondsToString(globalStats.uptimeSeconds) + "<br/>\n";
+    webpage += "Uptime:" + secondsToString(globalStats.uptimeSecondsTotal) + "<br/>\n";
     webpage += "Skip error count:" + String(globalStats.skipped) + "<br/>\n";
     webpage += "Reboots:" + String(globalStats.reboots) + "<br/>\n";
+    webpage += "Version: " + String(__TIMESTAMP__) + "<br/></div></div>\n";
 
-    webpage += "Logs:<br/><ul>\n";
+    webpage += "<div class='logs'><h2>Logs</h2><ul>\n";
     server.sendContent(webpage);
 
     for (std::list<String>::reverse_iterator line = logger.lastItems.rbegin();
@@ -188,7 +202,7 @@ void handleRoot()
         String logLine = "<li><pre>" + (*line) + "</pre></li>\n";
         server.sendContent(logLine);
     }
-    webpage = "</ul></div></body></html>\n";
+    webpage = "</ul></div></div></body></html>\n";
     server.sendContent(webpage);
     server.chunkedResponseFinalize();
 }
@@ -201,7 +215,11 @@ void handleSet()
     currentDisplayedTime = (hour * 60 + minute) % 1440;
 
     localZone = zoneManager.createForZoneIndex(zoneIdx);
-    globalStats.zoneId = localZone.getZoneId();
+    if (localZone.isError() == false) {
+        globalStats.zoneId = localZone.getZoneId();
+        EEPROM.put(STATS_ADDRESS, globalStats);
+        EEPROM.commit();
+    }
 
     server.sendHeader("Location", "/");
     server.send(302, "text/plain", "");
@@ -412,12 +430,10 @@ bool advance()
                 ace_common::PrintStr<64> currentTimeStr;
                 zonedDateTime.printTo(currentTimeStr);
 
-                logger.printf("%s - %02d:%02d - %d/%d - triggerCount=%d steps=%d val=%d min=%d max=%d base=%d\n",
+                logger.printf("%s - %02d:%02d - triggerCount=%d steps=%d val=%d min=%d max=%d base=%d\n",
                     currentTimeStr.getCstr(),
                     (((1440 + currentDisplayedTime) / 60) % 24),
                     (1440 + currentDisplayedTime) % 60,
-                    currentDisplayedTime,
-                    currentTime,
                     triggerCount, stepperMotorSteps, val, minValue, maxValue, irPhotoDiodeBaseLine);
 #endif
                 stepperMotorSteps = 0;
@@ -442,17 +458,17 @@ void loop()
     if (currentDisplayedTime < currentTime) {
         if (recalcBaseline) {
             calculateBaseline();
-// #ifdef DEBUG
-//             time_t localTime = time(nullptr);
-//             ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
-//                 localTime, localZone);
-//             ace_common::PrintStr<64> currentTimeStr;
-//             zonedDateTime.printTo(currentTimeStr);
+            // #ifdef DEBUG
+            //             time_t localTime = time(nullptr);
+            //             ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
+            //                 localTime, localZone);
+            //             ace_common::PrintStr<64> currentTimeStr;
+            //             zonedDateTime.printTo(currentTimeStr);
 
-//             logger.printf("%s - min=%d max=%d base=%d\n",
-//                 currentTimeStr.getCstr(),
-//                 minValue, maxValue, (int)irPhotoDiodeBaseLine);
-// #endif
+            //             logger.printf("%s - min=%d max=%d base=%d\n",
+            //                 currentTimeStr.getCstr(),
+            //                 minValue, maxValue, (int)irPhotoDiodeBaseLine);
+            // #endif
             recalcBaseline = false;
             minValue = 1024;
             maxValue = irPhotoDiodeBaseLine;
