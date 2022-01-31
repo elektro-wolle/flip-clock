@@ -26,7 +26,7 @@
 #define STATS_ADDRESS 10
 #define DRD_ADDRESS 4
 #define EEPROM_MAGIC_NUMBER 0xdeadbeef
-#define MAX_STEPS_PER_FLIP 60
+#define MAX_STEPS_PER_FLIP 50
 
 typedef struct {
     uint32_t magicNumber;
@@ -91,7 +91,7 @@ ESP8266WebServer server(80);
 // DIR auf D3 = 0
 #define DIR 0
 
-static uint16_t irPhotoDiodeBaseLine = 0;
+static uint16_t irPhotoDiodeBaseLine = analogRead(A0);
 int16_t currentDisplayedTime = 9 * 60 + 44;
 int16_t currentTime = 07 * 60 + 55;
 bool fastMode = true;
@@ -360,11 +360,14 @@ void calculateBaseline()
 {
     int base = 0;
     for (int x = 0; x < 10; x++) {
-        base += analogRead(A0);
+        base = max(base, analogRead(A0));
         delayMicroseconds(10);
     }
-    irPhotoDiodeBaseLine = base / 10;
+    irPhotoDiodeBaseLine = base;
 }
+
+int minValue = 1024;
+int maxValue = 0;
 
 bool advance()
 {
@@ -377,8 +380,6 @@ bool advance()
     static uint16_t stepperMotorSteps = 0;
     stepperMotorSteps++;
     uint16_t triggerCount = 0;
-    int minValue = 1024;
-    int maxValue = 0;
     for (int count = 0; count < 3000; count++) {
         if (count % 10 == 0) {
             // digitalWrite(D0, HIGH);
@@ -387,19 +388,16 @@ bool advance()
             maxValue = max(maxValue, val);
             // digitalWrite(D0, LOW);
 
-            if (stepperMotorSteps > 5) {
-                if (val < 0.95 * irPhotoDiodeBaseLine || stepperMotorSteps > MAX_STEPS_PER_FLIP) {
+            if (stepperMotorSteps > 2) {
+                if (val < 0.95 * maxValue || stepperMotorSteps > MAX_STEPS_PER_FLIP) {
                     triggerCount++;
-                    if (triggerCount > 3 || stepperMotorSteps > MAX_STEPS_PER_FLIP) {
+                    if (triggerCount > 2 || stepperMotorSteps > MAX_STEPS_PER_FLIP) {
                         if (stepperMotorSteps > MAX_STEPS_PER_FLIP) {
                             globalStats.skipped++;
                         }
                         minuteDisplayFlipped = true;
                     }
                 }
-
-            } else if (stepperMotorSteps == 5) {
-                calculateBaseline();
             }
 
             if (minuteDisplayFlipped) {
@@ -440,12 +438,31 @@ void loop()
 #ifdef OTA
     ArduinoOTA.handle();
 #endif
+    static bool recalcBaseline = true;
     if (currentDisplayedTime < currentTime) {
-        fastMode = true;
+        if (recalcBaseline) {
+            calculateBaseline();
+// #ifdef DEBUG
+//             time_t localTime = time(nullptr);
+//             ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
+//                 localTime, localZone);
+//             ace_common::PrintStr<64> currentTimeStr;
+//             zonedDateTime.printTo(currentTimeStr);
+
+//             logger.printf("%s - min=%d max=%d base=%d\n",
+//                 currentTimeStr.getCstr(),
+//                 minValue, maxValue, (int)irPhotoDiodeBaseLine);
+// #endif
+            recalcBaseline = false;
+            minValue = 1024;
+            maxValue = irPhotoDiodeBaseLine;
+        }
         static unsigned long waitTime = millis();
         if (millis() > waitTime) {
+            fastMode = true;
             bool advanced = advance();
             if (advanced) {
+                recalcBaseline = true;
                 minuteDisplayFlipped = false;
                 waitTime = millis() + 1000;
             }
