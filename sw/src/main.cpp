@@ -133,15 +133,18 @@ void handleRoot()
     int hour = (((1440 + currentDisplayedTime) / 60) % 24);
     int minute = (1440 + currentDisplayedTime) % 60;
 
-    String webpage = "<!DOCTYPE html><html><head><meta charset='iso-8859-1'/>";
-    webpage += "<title>FlipClock</title><style>";
-    webpage += "body {margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;} .info { margin-left: 25%; text-align: left; width: 300px; } ul li {text-align: left;max-width: 500px;}";
-    webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1>";
-    webpage += "Aktuell angezeigte Zeit:</br>";
-    webpage += "<form action=\"/set\" method=\"POST\">";
+    server.chunkedResponseModeStart(200, "text/html");
+
+    String webpage = "<!DOCTYPE html><html><head><meta charset='iso-8859-1'/>\n";
+    webpage += "<title>FlipClock</title><style>\n";
+    webpage += "body {margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;} .info { margin-left: 25%; text-align: left; width: 300px; } ul li {text-align: left;max-width: 500px;}\n";
+    webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1>\n";
+    webpage += "Aktuell angezeigte Zeit:</br>\n";
+    webpage += "<form action=\"/set\" method=\"POST\">\n";
     webpage += "Stunde: <input type=\"number\" name=\"hour\" value=\"" + String(hour) + "\" min=\"0\" max=\"23\"></br>";
     webpage += "Minute: <input type=\"number\" name=\"minute\" value=\"" + String(minute) + "\" min=\"0\" max=\"59\"></br>";
-    webpage += "<select name='zone'>";
+    webpage += "<select name='zone'>\n";
+    server.sendContent(webpage);
 
     uint16_t indexes[zonedbx::kZoneRegistrySize];
     ace_time::ZoneSorterByName<ExtendedZoneManager> zoneSorter(zoneManager);
@@ -151,16 +154,15 @@ void handleRoot()
         ace_common::PrintStr<32> printStr;
         ExtendedZone zone = zoneManager.getZoneForIndex(indexes[i]);
         zone.printNameTo(printStr);
-        webpage += "<option value='" + String(indexes[i]) + "'";
+        webpage = "<option value='" + String(indexes[i]) + "'";
         if (zone.zoneId() == globalStats.zoneId) {
             webpage += " selected='selected'";
         }
-        webpage += ">" + String(printStr.getCstr()) + "</option>";
+        webpage += ">" + String(printStr.getCstr()) + "</option>\n";
+        server.sendContent(webpage);
     }
-    webpage += "</select>";
 
-    webpage += "<input type=\"submit\" value=\"Speichern\"></form><br/>";
-
+    webpage = "</select><input type=\"submit\" value=\"Speichern\"></form><br/>\n";
     webpage += "<div class='info'>";
     webpage += "Aktuelle Zeit: ";
 
@@ -170,22 +172,25 @@ void handleRoot()
     ace_common::PrintStr<60> currentTimeStr;
     zonedDateTime.printTo(currentTimeStr);
 
-    webpage += String(currentTimeStr.getCstr()) + "</br>";
-    webpage += "Stats:<br>";
-    webpage += "Uptime seit letztem Reset:" + String(globalStats.uptimeSeconds) + "<br/>";
-    webpage += "Uptime:" + String(globalStats.uptimeSecondsTotal) + "<br/>";
-    webpage += "Skip error count:" + String(globalStats.skipped) + "<br/>";
-    webpage += "Reboots:" + String(globalStats.reboots) + "<br/>";
+    webpage += String(currentTimeStr.getCstr()) + "</br>\n";
+    webpage += "Stats:<br>\n";
+    webpage += "Uptime seit letztem Reset:" + String(globalStats.uptimeSeconds) + "<br/>\n";
+    webpage += "Uptime:" + String(globalStats.uptimeSecondsTotal) + "<br/>\n";
+    webpage += "Skip error count:" + String(globalStats.skipped) + "<br/>\n";
+    webpage += "Reboots:" + String(globalStats.reboots) + "<br/>\n";
 
-    webpage += "Logs:<br/><ul>";
+    webpage += "Logs:<br/><ul>\n";
+    server.sendContent(webpage);
+
     for (std::list<String>::reverse_iterator line = logger.lastItems.rbegin();
          line != logger.lastItems.rend();
          line++) {
-        webpage += "<li><pre>" + (*line) + "</pre></li>";
+        String logLine = "<li><pre>" + (*line) + "</pre></li>\n";
+        server.sendContent(logLine);
     }
-    webpage += "</ul>";
-    webpage += " </div></body></html>";
-    server.send(200, "text/html", webpage);
+    webpage = "</ul></div></body></html>\n";
+    server.sendContent(webpage);
+    server.chunkedResponseFinalize();
 }
 
 void handleSet()
