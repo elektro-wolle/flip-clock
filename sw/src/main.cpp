@@ -25,16 +25,18 @@
 
 #define STATS_ADDRESS 10
 #define DRD_ADDRESS 4
-#define EEPROM_MAGIC_NUMBER 0xdeadbeef
-#define MAX_STEPS_PER_FLIP 50
+#define EEPROM_MAGIC_NUMBER 0xdeadbeed
+#define MAX_STEPS_PER_FLIP 40
 
 typedef struct {
     uint32_t magicNumber;
-    uint32_t previousSecondsTotal;
-    uint32_t uptimeSecondsTotal;
     uint32_t uptimeSeconds;
+    uint32_t uptimeSecondsTotal;
+    uint32_t previousSecondsTotal;
     uint16_t reboots;
     uint16_t skipped;
+    uint16_t skippedTotal;
+    uint32_t previousSkippedTotal;
     uint32_t zoneId;
 } statistics_t;
 
@@ -95,7 +97,6 @@ static uint16_t irPhotoDiodeBaseLine = analogRead(A0);
 int16_t currentDisplayedTime = 9 * 60 + 44;
 int16_t currentTime = 07 * 60 + 55;
 bool fastMode = true;
-bool minuteDisplayFlipped = false;
 
 void setCurrentTime();
 void calculateBaseline();
@@ -187,9 +188,10 @@ void handleRoot()
 
     webpage += String(currentTimeStr.getCstr()) + "</tt></div></br>\n";
     webpage += "<div class='stats'><h2>Stats</h2>\n";
-    webpage += "Uptime seit letztem Reset:" + secondsToString(globalStats.uptimeSeconds) + "<br/>\n";
-    webpage += "Uptime:" + secondsToString(globalStats.uptimeSecondsTotal) + "<br/>\n";
-    webpage += "Skip error count:" + String(globalStats.skipped) + "<br/>\n";
+    webpage += "Uptime:" + secondsToString(globalStats.uptimeSeconds) + "<br/>\n";
+    webpage += "Uptime gesamt:" + secondsToString(globalStats.uptimeSecondsTotal) + "<br/>\n";
+    webpage += "Skips :" + String(globalStats.skipped) + "<br/>\n";
+    webpage += "Skips gesamt:" + String(globalStats.skippedTotal) + "<br/>\n";
     webpage += "Reboots:" + String(globalStats.reboots) + "<br/>\n";
     webpage += "Version: " + String(__TIMESTAMP__) + "<br/></div></div>\n";
 
@@ -232,15 +234,18 @@ void readFromEEProm()
     EEPROM.get(STATS_ADDRESS, globalStats);
     if (globalStats.magicNumber != EEPROM_MAGIC_NUMBER) {
         globalStats.magicNumber = EEPROM_MAGIC_NUMBER;
-        globalStats.reboots = 0;
+        globalStats.reboots = 28;
         globalStats.skipped = 0;
+        globalStats.skippedTotal = 163;
+        globalStats.previousSkippedTotal = 0;
         globalStats.uptimeSeconds = 0;
-        globalStats.uptimeSecondsTotal = 0;
+        globalStats.uptimeSecondsTotal = 86400 * 3 + 7124;
         globalStats.previousSecondsTotal = 0;
         globalStats.zoneId = zonedbx::kZoneIdEurope_Berlin;
         EEPROM.put(STATS_ADDRESS, globalStats);
     }
     globalStats.previousSecondsTotal = globalStats.uptimeSecondsTotal;
+    globalStats.previousSkippedTotal = globalStats.skippedTotal;
     localZone = zoneManager.createForZoneId(globalStats.zoneId);
     if (localZone.isError()) {
         globalStats.zoneId = zonedbx::kZoneIdEurope_Berlin;
@@ -369,7 +374,7 @@ void setCurrentTime()
     ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
         localTime, localZone);
     currentTime = zonedDateTime.minute() + zonedDateTime.hour() * 60;
-    if (zonedDateTime.second() > 57) {
+    if (zonedDateTime.second() > 58) {
         currentTime += 1;
     }
 }
@@ -378,144 +383,123 @@ void calculateBaseline()
 {
     int base = 0;
     for (int x = 0; x < 10; x++) {
-        base = max(base, analogRead(A0));
+        base = base + analogRead(A0);
         delayMicroseconds(10);
     }
-    irPhotoDiodeBaseLine = base;
+    irPhotoDiodeBaseLine = base / 10;
 }
 
-int minValue = 1024;
-int maxValue = 0;
-
-bool advance()
+void advance()
 {
-    digitalWrite(ENABLE, LOW);
-    digitalWrite(STEP, HIGH);
-    digitalWrite(DIR, HIGH);
-    delayMicroseconds(1);
-    digitalWrite(STEP, LOW);
-
-    static uint16_t stepperMotorSteps = 0;
-    stepperMotorSteps++;
+    int minValue = 1024;
+    int maxValue = 0;
+    bool minuteDisplayFlipped = false;
     uint16_t triggerCount = 0;
-    for (int count = 0; count < 3000; count++) {
-        if (count % 10 == 0) {
-            // digitalWrite(D0, HIGH);
-            int val = analogRead(A0);
-            minValue = min(minValue, val);
-            maxValue = max(maxValue, val);
-            // digitalWrite(D0, LOW);
+    int16_t triggeredAt = -1;
+    int currentIrReading = 0;
 
-            if (stepperMotorSteps > 2) {
-                if (val < 0.95 * maxValue || stepperMotorSteps > MAX_STEPS_PER_FLIP) {
-                    triggerCount++;
-                    if (triggerCount > 2 || stepperMotorSteps > MAX_STEPS_PER_FLIP) {
-                        if (stepperMotorSteps > MAX_STEPS_PER_FLIP) {
-                            globalStats.skipped++;
-                        }
-                        minuteDisplayFlipped = true;
-                    }
-                }
-            }
-
-            if (minuteDisplayFlipped) {
-                currentDisplayedTime++;
-                if (currentDisplayedTime >= 1440) {
-                    currentDisplayedTime -= 1440;
-                }
-#ifdef DEBUG
-                time_t localTime = time(nullptr);
-                ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
-                    localTime, localZone);
-                ace_common::PrintStr<64> currentTimeStr;
-                zonedDateTime.printTo(currentTimeStr);
-
-                logger.printf("%s - %02d:%02d - triggerCount=%d steps=%d val=%d min=%d max=%d base=%d\n",
-                    currentTimeStr.getCstr(),
-                    (((1440 + currentDisplayedTime) / 60) % 24),
-                    (1440 + currentDisplayedTime) % 60,
-                    triggerCount, stepperMotorSteps, val, minValue, maxValue, irPhotoDiodeBaseLine);
-#endif
-                stepperMotorSteps = 0;
-                if (fastMode == false) {
-                    digitalWrite(ENABLE, HIGH);
-                }
-                return true;
-            }
+    digitalWrite(ENABLE, LOW);
+    digitalWrite(DIR, HIGH);
+    calculateBaseline();
+    for (uint16_t stepperMotorSteps = 0; stepperMotorSteps < MAX_STEPS_PER_FLIP; stepperMotorSteps++) {
+        if (!minuteDisplayFlipped) {
+            digitalWrite(STEP, HIGH);
+            delayMicroseconds(1);
+            digitalWrite(STEP, LOW);
         }
-        delayMicroseconds(1);
+        for (int count = 0; count < 30; count++) {
+            currentIrReading = analogRead(A0);
+            minValue = min(minValue, currentIrReading);
+            maxValue = max(maxValue, currentIrReading);
+
+            if (stepperMotorSteps >= 3) {
+                if (currentIrReading < 0.97 * irPhotoDiodeBaseLine) {
+                    triggerCount++;
+                    triggeredAt = stepperMotorSteps;
+                    minuteDisplayFlipped = true;
+                }
+            }
+            delayMicroseconds(100);
+        }
     }
-    return false;
+
+    if ((double)minValue / (double)irPhotoDiodeBaseLine < 0.97) {
+        //enough difference in readings
+        currentDisplayedTime++;
+    } else {
+        globalStats.skipped++;
+    }
+
+    if (currentDisplayedTime >= 1440) {
+        currentDisplayedTime -= 1440;
+    }
+#ifdef DEBUG
+    time_t localTime = time(nullptr);
+    ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
+        localTime, localZone);
+    ace_common::PrintStr<64> currentTimeStr;
+    zonedDateTime.printTo(currentTimeStr);
+
+    logger.printf("%s - %02d:%02d - triggerCount=%d steps=%d val=%d min=%d max=%d base=%d\n",
+        currentTimeStr.getCstr(),
+        (((1440 + currentDisplayedTime) / 60) % 24),
+        (1440 + currentDisplayedTime) % 60,
+        triggerCount, triggeredAt, currentIrReading, minValue, maxValue, irPhotoDiodeBaseLine);
+#endif
+}
+
+template <int T>
+void runEvery(void (*f)())
+{
+    static unsigned long lastMillis = millis();
+    unsigned long now = millis();
+    if (now >= lastMillis + T) {
+        // run every T milli-seconds
+        f();
+        lastMillis = millis();
+    }
 }
 
 void loop()
 {
+    // WebServer should react..
     server.handleClient();
 #ifdef OTA
+    // OTA the same
     ArduinoOTA.handle();
 #endif
-    static bool recalcBaseline = true;
-    if (currentDisplayedTime < currentTime) {
-        if (recalcBaseline) {
-            calculateBaseline();
-            // #ifdef DEBUG
-            //             time_t localTime = time(nullptr);
-            //             ZonedDateTime zonedDateTime = ZonedDateTime::forUnixSeconds(
-            //                 localTime, localZone);
-            //             ace_common::PrintStr<64> currentTimeStr;
-            //             zonedDateTime.printTo(currentTimeStr);
 
-            //             logger.printf("%s - min=%d max=%d base=%d\n",
-            //                 currentTimeStr.getCstr(),
-            //                 minValue, maxValue, (int)irPhotoDiodeBaseLine);
-            // #endif
-            recalcBaseline = false;
-            minValue = 1024;
-            maxValue = irPhotoDiodeBaseLine;
-        }
-        static unsigned long waitTime = millis();
-        if (millis() > waitTime) {
-            fastMode = true;
-            bool advanced = advance();
-            if (advanced) {
-                recalcBaseline = true;
-                minuteDisplayFlipped = false;
-                waitTime = millis() + 1000;
+    // The main time-handling code, wait at least 1 second between flips
+    runEvery<1000>([]() {
+        if (currentDisplayedTime < currentTime) {
+            advance();
+        } else if (currentDisplayedTime == currentTime) {
+            digitalWrite(ENABLE, HIGH);
+            fastMode = false;
+        } else { // currentDisplayedTime > currentTime
+            if (currentTime >= 1 * 60 && currentTime <= 6 * 60) {
+                // do nothing in the night
+                fastMode = false;
+            } else if (currentDisplayedTime > currentTime + 10) {
+                fastMode = true;
+                currentDisplayedTime -= 1440;
             }
         }
-    } else {
-        digitalWrite(ENABLE, HIGH);
-        fastMode = false;
-    }
-    //
-    if (currentDisplayedTime > currentTime && currentTime >= 1 * 60 && currentTime <= 6 * 60) {
-        fastMode = false;
-        // just wait for time to arrive in the night
-    } else {
-        // if more than 10 minutes late: advance the whole day
-        if (currentDisplayedTime > currentTime + 10) {
-            fastMode = true;
-            currentDisplayedTime -= 1440;
-        }
-    }
+    });
 
-    static unsigned long lastMillis = millis();
-    unsigned long now = millis();
-    if (now >= lastMillis + 1000) {
-        // run every second
-        lastMillis = now;
-        globalStats.uptimeSeconds = (now / 1000);
+    // every half second -> housekeeping of time and name
+    runEvery<500>([]() {
+        globalStats.uptimeSeconds = (millis() / 1000);
         globalStats.uptimeSecondsTotal = globalStats.previousSecondsTotal + globalStats.uptimeSeconds;
-
+        globalStats.skippedTotal = globalStats.previousSkippedTotal + globalStats.skipped;
         setCurrentTime();
         drd.loop();
         MDNS.update();
-    }
+    });
 
-    static uint32_t lastEepromWrite = 0;
-    if (now > lastEepromWrite + (1000 * 60 * 15)) { // every 15 minutes
+    // every 15 minutes -> store stats
+    runEvery<1000 * 15 * 60>([]() {
         EEPROM.put(STATS_ADDRESS, globalStats);
         EEPROM.commit();
-        lastEepromWrite = now;
-    }
+    });
 }
