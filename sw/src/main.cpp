@@ -244,12 +244,12 @@ void readFromEEProm()
     EEPROM.get(STATS_ADDRESS, globalStats);
     if (globalStats.magicNumber != EEPROM_MAGIC_NUMBER) {
         globalStats.magicNumber = EEPROM_MAGIC_NUMBER;
-        globalStats.reboots = 28;
+        globalStats.reboots = 0;
         globalStats.skipped = 0;
-        globalStats.skippedTotal = 163;
+        globalStats.skippedTotal = 0;
         globalStats.previousSkippedTotal = 0;
         globalStats.uptimeSeconds = 0;
-        globalStats.uptimeSecondsTotal = 86400 * 3 + 7124;
+        globalStats.uptimeSecondsTotal = 0;
         globalStats.previousSecondsTotal = 0;
         globalStats.zoneId = zonedbx::kZoneIdEurope_Berlin;
         EEPROM.put(STATS_ADDRESS, globalStats);
@@ -262,6 +262,9 @@ void readFromEEProm()
         localZone = zoneManager.createForZoneId(globalStats.zoneId);
         EEPROM.put(STATS_ADDRESS, globalStats);
     }
+    globalStats.uptimeSeconds = 0;
+    globalStats.skipped = 0;
+
     Serial.print("Using Timezone: ");
     localZone.printTo(Serial);
     Serial.println();
@@ -429,18 +432,16 @@ void advance()
             if (stepperMotorSteps >= 3) {
                 if (currentIrReading < (max(irPhotoDiodeBaseLine, maxValue) - 30) || currentIrReading < 0.95 * irPhotoDiodeBaseLine) {
                     triggerCount++;
-                    if (triggerCount > 10) {
-                        triggeredAt = stepperMotorSteps;
-                        minuteDisplayFlipped = true;
-                    }
+                    triggeredAt = stepperMotorSteps;
+                    minuteDisplayFlipped = true;
                 }
             }
             delayMicroseconds(100);
         }
     }
 
-    if (triggerCount >= 1) {
-        // assume flip, even if triggered only once
+    if ((double)minValue / (double)irPhotoDiodeBaseLine < 0.97 || minValue < (max(irPhotoDiodeBaseLine, maxValue) - 30)) {
+        //enough difference in readings
         currentDisplayedTime++;
     } else {
         globalStats.skipped++;
