@@ -66,6 +66,8 @@ private:
     String currentLine = String("");
 };
 
+std::list<uint16_t> irValues;
+
 Logger logger;
 
 static const time_t EPOCH_2000_01_01 = 946684800;
@@ -151,6 +153,7 @@ void handleRoot()
     String webpage = "<!DOCTYPE html><html><head><meta charset='iso-8859-1'/>\n";
     webpage += "<title>FlipClock</title><style>\n";
     webpage += "body{margin-left:5em;margin-right:5em;font-family:sans-serif;font-size:14px;color:darkslategray;background-color:#EEE}h1{text-align:center}.info{width:100%;text-align:left;font-size:18pt}input,main,option,select,th{font-size:24pt;text-align:left}input{width:100%}input[type='submit']{width:min-content;float:right;text-align:right}main{font-size:16pt;vertical-align:middle}.info{line-height:2em}.info br{margin-left:3em}.logs{margin-top:2em;padding-top:2em;overflow-x:auto;border-top:black 2px solid}ul li{text-align:left}\n";
+    webpage += ".graph {background-color: #EEE; font-size:0} .bar { background-color: blueviolet; width: 1px; display: inline-block; }";
     webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1><div class='main'>\n";
     webpage += "<h2>Aktuell angezeigte Zeit:</h2>\n";
     webpage += "<form action=\"/set\" method=\"POST\"><table>\n";
@@ -204,7 +207,14 @@ void handleRoot()
         String logLine = "<li><pre>" + (*line) + "</pre></li>\n";
         server.sendContent(logLine);
     }
-    webpage = "</ul></div></div></body></html>\n";
+    webpage = "</ul></div><div class='graph'>\n";
+    server.sendContent(webpage);
+    for (uint16_t val : irValues) {
+        String logLine = "<div style='height: " + String(val) + "px' class='bar'></div>\n";
+        server.sendContent(logLine);
+    }
+
+    webpage = "</div></body></html>\n";
     server.sendContent(webpage);
     server.chunkedResponseFinalize();
 }
@@ -391,17 +401,19 @@ void calculateBaseline()
 
 void advance()
 {
-    int minValue = 1024;
-    int maxValue = 0;
+    uint16_t minValue = 1024;
+    uint16_t maxValue = 0;
     bool minuteDisplayFlipped = false;
     uint16_t triggerCount = 0;
     int16_t triggeredAt = -1;
-    int currentIrReading = 0;
+    uint16_t currentIrReading = 0;
 
     digitalWrite(ENABLE, LOW);
     digitalWrite(DIR, HIGH);
     calculateBaseline();
-    for (uint16_t stepperMotorSteps = 0; stepperMotorSteps < MAX_STEPS_PER_FLIP; stepperMotorSteps++) {
+    irValues.remove_if([](uint16_t arg) { return true; });
+
+    for (uint16_t stepperMotorSteps = 0; stepperMotorSteps < 60; stepperMotorSteps++) {
         if (!minuteDisplayFlipped) {
             digitalWrite(STEP, HIGH);
             delayMicroseconds(1);
@@ -411,12 +423,16 @@ void advance()
             currentIrReading = analogRead(A0);
             minValue = min(minValue, currentIrReading);
             maxValue = max(maxValue, currentIrReading);
-
+            if (stepperMotorSteps > 20) {
+                irValues.push_back(currentIrReading);
+            }
             if (stepperMotorSteps >= 3) {
-                if (currentIrReading < 0.97 * irPhotoDiodeBaseLine) {
+                if (currentIrReading < (max(irPhotoDiodeBaseLine, maxValue) - 30) || currentIrReading < 0.95 * irPhotoDiodeBaseLine) {
                     triggerCount++;
-                    triggeredAt = stepperMotorSteps;
-                    minuteDisplayFlipped = true;
+                    if (triggerCount > 10) {
+                        triggeredAt = stepperMotorSteps;
+                        minuteDisplayFlipped = true;
+                    }
                 }
             }
             delayMicroseconds(100);
@@ -429,7 +445,9 @@ void advance()
     } else {
         globalStats.skipped++;
     }
-
+    for (std::_List_iterator<uint16_t> it = irValues.begin(); it != irValues.end(); it++) {
+        *it = maxValue - *it;
+    }
     if (currentDisplayedTime >= 1440) {
         currentDisplayedTime -= 1440;
     }
