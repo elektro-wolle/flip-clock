@@ -439,8 +439,8 @@ void advance()
         }
     }
 
-    if ((double)minValue / (double)irPhotoDiodeBaseLine < 0.97) {
-        //enough difference in readings
+    if (triggerCount >= 1) {
+        // assume flip, even if triggered only once
         currentDisplayedTime++;
     } else {
         globalStats.skipped++;
