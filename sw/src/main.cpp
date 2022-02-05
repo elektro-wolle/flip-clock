@@ -66,7 +66,7 @@ private:
     String currentLine = String("");
 };
 
-std::list<uint16_t> irValues;
+std::vector<int16_t> irValues;
 
 Logger logger;
 
@@ -99,6 +99,7 @@ static uint16_t irPhotoDiodeBaseLine = analogRead(A0);
 int16_t currentDisplayedTime = 9 * 60 + 44;
 int16_t currentTime = 07 * 60 + 55;
 bool fastMode = true;
+int16_t triggeredAt = -1;
 
 void setCurrentTime();
 void calculateBaseline();
@@ -148,12 +149,12 @@ void handleRoot()
     int hour = (((1440 + currentDisplayedTime) / 60) % 24);
     int minute = (1440 + currentDisplayedTime) % 60;
 
-    server.chunkedResponseModeStart(200, "text/html");
+    server.chunkedResponseModeStart(200, "text/html; charset=utf-8");
 
-    String webpage = "<!DOCTYPE html><html><head><meta charset='iso-8859-1'/>\n";
+    String webpage = "<!DOCTYPE html><html><head>\n";
     webpage += "<title>FlipClock</title><style>\n";
     webpage += "body{margin-left:5em;margin-right:5em;font-family:sans-serif;font-size:14px;color:darkslategray;background-color:#EEE}h1{text-align:center}.info{width:100%;text-align:left;font-size:18pt}input,main,option,select,th{font-size:24pt;text-align:left}input{width:100%}input[type='submit']{width:min-content;float:right;text-align:right}main{font-size:16pt;vertical-align:middle}.info{line-height:2em}.info br{margin-left:3em}.logs{margin-top:2em;padding-top:2em;overflow-x:auto;border-top:black 2px solid}ul li{text-align:left}\n";
-    webpage += ".graph {background-color: #EEE; font-size:0} .bar { background-color: blueviolet; width: 1px; display: inline-block; }";
+    webpage += ".graph {background-color: #EEE; font-size:0; overflow-x: auto; padding-bottom: 40px;} .bar { background-color: blueviolet; width: 1px; display: inline-block; } .active { background-color: green; }";
     webpage += "</style></head><body><h1>FlipClock by Wolfgang Jung</h1><div class='main'>\n";
     webpage += "<h2>Aktuell angezeigte Zeit:</h2>\n";
     webpage += "<form action=\"/set\" method=\"POST\"><table>\n";
@@ -209,9 +210,21 @@ void handleRoot()
     }
     webpage = "</ul></div><div class='graph'>\n";
     server.sendContent(webpage);
+    int idx = 0;
     for (uint16_t val : irValues) {
-        String logLine = "<div style='height: " + String(val) + "px' class='bar'></div>\n";
-        server.sendContent(logLine);
+        bool visible = triggeredAt < 0 || (idx > triggeredAt - 200 && idx < triggeredAt + 200);
+        if (!visible) {
+            idx++;
+            continue;
+        }
+        if (idx == triggeredAt) {
+            String logLine = "<div style='height: " + String(val) + "px' class='bar active'></div>\n";
+            server.sendContent(logLine);
+        } else {
+            String logLine = "<div style='height: " + String(val) + "px' class='bar'></div>\n";
+            server.sendContent(logLine);
+        }
+        idx++;
     }
 
     webpage = "</div></body></html>\n";
@@ -404,19 +417,25 @@ void calculateBaseline()
 
 void advance()
 {
-    uint16_t minValue = 1024;
-    uint16_t maxValue = 0;
+    int16_t minValue = 1024;
+    int16_t maxValue = 0;
     bool minuteDisplayFlipped = false;
     uint16_t triggerCount = 0;
-    int16_t triggeredAt = -1;
-    uint16_t currentIrReading = 0;
+    uint16_t minimumAt = 0;
+    uint16_t maximumAt = 0;
+    triggeredAt = -1;
+    int16_t currentIrReading = 0;
 
     digitalWrite(ENABLE, LOW);
     digitalWrite(DIR, HIGH);
     calculateBaseline();
-    irValues.remove_if([](uint16_t arg) { return true; });
+    maxValue = 0;
+    minValue = 1024;
 
-    for (uint16_t stepperMotorSteps = 0; stepperMotorSteps < 60; stepperMotorSteps++) {
+    irValues.clear();
+    irValues.resize(0);
+
+    for (uint16_t stepperMotorSteps = 0; stepperMotorSteps < 50; stepperMotorSteps++) {
         if (!minuteDisplayFlipped) {
             digitalWrite(STEP, HIGH);
             delayMicroseconds(1);
@@ -424,31 +443,38 @@ void advance()
         }
         for (int count = 0; count < 30; count++) {
             currentIrReading = analogRead(A0);
-            minValue = min(minValue, currentIrReading);
-            maxValue = max(maxValue, currentIrReading);
-            if (stepperMotorSteps > 20) {
-                irValues.push_back(currentIrReading);
+            irValues.push_back(currentIrReading);
+            if (currentIrReading < minValue) {
+                minimumAt = stepperMotorSteps;
+                minValue = currentIrReading;
             }
-            if (stepperMotorSteps >= 3) {
-                if (currentIrReading < (max(irPhotoDiodeBaseLine, maxValue) - 30) || currentIrReading < 0.95 * irPhotoDiodeBaseLine) {
-                    triggerCount++;
-                    triggeredAt = stepperMotorSteps;
-                    minuteDisplayFlipped = true;
+            if (currentIrReading > maxValue) {
+                maximumAt = stepperMotorSteps;
+                maxValue = currentIrReading;
+            }
+            int historyElements = irValues.size();
+            if ((historyElements > 12 && currentIrReading > irValues[historyElements - 12] + 15) || (historyElements > 100 && currentIrReading > irValues[historyElements - 100] + 40)) {
+                triggerCount++;
+                if (triggeredAt == -1) {
+                    triggeredAt = historyElements;
                 }
+                minuteDisplayFlipped = true;
             }
             delayMicroseconds(100);
         }
     }
 
-    if ((double)minValue / (double)irPhotoDiodeBaseLine < 0.97 || minValue < (max(irPhotoDiodeBaseLine, maxValue) - 30)) {
-        //enough difference in readings
+    if (triggeredAt > 0) {
+        // enough difference in readings
         currentDisplayedTime++;
     } else {
         globalStats.skipped++;
     }
-    for (std::_List_iterator<uint16_t> it = irValues.begin(); it != irValues.end(); it++) {
-        *it = maxValue - *it;
+
+    for (std::vector<int16_t>::iterator it = irValues.begin(); it != irValues.end(); it++) {
+        *it = *it - minValue;
     }
+
     if (currentDisplayedTime >= 1440) {
         currentDisplayedTime -= 1440;
     }
@@ -459,11 +485,11 @@ void advance()
     ace_common::PrintStr<64> currentTimeStr;
     zonedDateTime.printTo(currentTimeStr);
 
-    logger.printf("%s - %02d:%02d - triggerCount=%d steps=%d val=%d min=%d max=%d base=%d\n",
+    logger.printf("%s - %02d:%02d - triggerCount=%d steps=%d val=%d min=%d@%d max=%d@%d base=%d\n",
         currentTimeStr.getCstr(),
         (((1440 + currentDisplayedTime) / 60) % 24),
         (1440 + currentDisplayedTime) % 60,
-        triggerCount, triggeredAt, currentIrReading, minValue, maxValue, irPhotoDiodeBaseLine);
+        triggerCount, triggeredAt, currentIrReading, minValue, minimumAt, maxValue, maximumAt, irPhotoDiodeBaseLine);
 #endif
 }
 
