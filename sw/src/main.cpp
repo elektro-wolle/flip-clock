@@ -464,12 +464,11 @@ void advance()
         }
     }
 
-    if (triggeredAt > 0) {
-        // enough difference in readings
-        currentDisplayedTime++;
-    } else {
+    if (triggeredAt == -1) {
         globalStats.skipped++;
+        // enough difference in readings
     }
+    currentDisplayedTime++;
 
     for (std::vector<int16_t>::iterator it = irValues.begin(); it != irValues.end(); it++) {
         *it = *it - minValue;
