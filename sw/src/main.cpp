@@ -99,7 +99,9 @@ static uint16_t irPhotoDiodeBaseLine = analogRead(A0);
 int16_t currentDisplayedTime = 9 * 60 + 44;
 int16_t currentTime = 07 * 60 + 55;
 bool fastMode = true;
-int16_t triggeredAt = -1;
+
+int16_t upTriggeredAt = -1;
+int16_t downTriggeredAt = -1;
 
 void setCurrentTime();
 void calculateBaseline();
@@ -198,37 +200,38 @@ void handleRoot()
     webpage += "Skips gesamt:" + String(globalStats.skippedTotal) + "<br/>\n";
     webpage += "Reboots:" + String(globalStats.reboots) + "<br/>\n";
     webpage += "Version: " + String(__TIMESTAMP__) + "<br/></div></div>\n";
-
-    webpage += "<div class='logs'><h2>Logs</h2><ul>\n";
     server.sendContent(webpage);
 
-    for (std::list<String>::reverse_iterator line = logger.lastItems.rbegin();
-         line != logger.lastItems.rend();
-         line++) {
-        String logLine = "<li><pre>" + (*line) + "</pre></li>\n";
-        server.sendContent(logLine);
-    }
-    webpage = "</ul></div><div class='graph'>\n";
-    server.sendContent(webpage);
-    int idx = 0;
-    for (uint16_t val : irValues) {
-        bool visible = triggeredAt < 0 || (idx > triggeredAt - 200 && idx < triggeredAt + 200);
-        if (!visible) {
+    if (logger.lastItems.size() > 0) {
+        server.sendContent("<div class='logs'><h2>Logs</h2><ul>\n");
+
+        for (std::list<String>::reverse_iterator line = logger.lastItems.rbegin();
+             line != logger.lastItems.rend();
+             line++) {
+            server.sendContent("<li><pre>" + (*line) + "</pre></li>\n");
+        }
+        server.sendContent("</ul></div>");
+
+        server.sendContent("<div class='graph'>\n");
+        int idx = 0;
+        for (uint16_t val : irValues) {
+            bool visible = (downTriggeredAt < 0 && upTriggeredAt < 0)|| (idx > downTriggeredAt - 200 && idx < upTriggeredAt + 200);
+            if (!visible) {
+                idx++;
+                continue;
+            }
+            if (idx == upTriggeredAt || idx == downTriggeredAt) {
+                server.sendContent("<div style='height: " + String(val) + "px' class='bar active'></div>\n");
+            } else {
+                server.sendContent("<div style='height: " + String(val) + "px' class='bar'></div>\n");
+            }
             idx++;
-            continue;
         }
-        if (idx == triggeredAt) {
-            String logLine = "<div style='height: " + String(val) + "px' class='bar active'></div>\n";
-            server.sendContent(logLine);
-        } else {
-            String logLine = "<div style='height: " + String(val) + "px' class='bar'></div>\n";
-            server.sendContent(logLine);
-        }
-        idx++;
+        server.sendContent("</div>");
     }
 
-    webpage = "</div></body></html>\n";
-    server.sendContent(webpage);
+    server.sendContent("</body></html>\n");
+
     server.chunkedResponseFinalize();
 }
 
@@ -423,7 +426,8 @@ void advance()
     uint16_t triggerCount = 0;
     uint16_t minimumAt = 0;
     uint16_t maximumAt = 0;
-    triggeredAt = -1;
+    upTriggeredAt = -1;
+    downTriggeredAt = -1;
     int16_t currentIrReading = 0;
 
     digitalWrite(ENABLE, LOW);
@@ -435,7 +439,7 @@ void advance()
     irValues.clear();
     irValues.resize(0);
 
-    for (uint16_t stepperMotorSteps = 0; stepperMotorSteps < 50; stepperMotorSteps++) {
+    for (uint16_t stepperMotorSteps = 0; stepperMotorSteps < 60; stepperMotorSteps++) {
         if (!minuteDisplayFlipped) {
             digitalWrite(STEP, HIGH);
             delayMicroseconds(1);
@@ -453,20 +457,26 @@ void advance()
                 maxValue = currentIrReading;
             }
             int historyElements = irValues.size();
-            if ((historyElements > 12 && currentIrReading > irValues[historyElements - 12] + 15) || (historyElements > 100 && currentIrReading > irValues[historyElements - 100] + 40)) {
-                triggerCount++;
-                if (triggeredAt == -1) {
-                    triggeredAt = historyElements;
+            if (historyElements > 100) {
+                bool up = currentIrReading - irValues[historyElements - 100] > 50;
+                bool down = irValues[historyElements - 100] - currentIrReading > 50;
+                if (up || down) {
+                    triggerCount++;
+                    if (down && downTriggeredAt == -1) {
+                        downTriggeredAt = historyElements;
+                    }
+                    if (up && upTriggeredAt == -1) {
+                        upTriggeredAt = historyElements;
+                    }
+                    minuteDisplayFlipped = true;
                 }
-                minuteDisplayFlipped = true;
             }
             delayMicroseconds(100);
         }
     }
 
-    if (triggeredAt == -1) {
+    if (triggerCount == 0) {
         globalStats.skipped++;
-        // enough difference in readings
     }
     currentDisplayedTime++;
 
@@ -484,11 +494,11 @@ void advance()
     ace_common::PrintStr<64> currentTimeStr;
     zonedDateTime.printTo(currentTimeStr);
 
-    logger.printf("%s - %02d:%02d - triggerCount=%d steps=%d val=%d min=%d@%d max=%d@%d base=%d\n",
+    logger.printf("%s - %02d:%02d - triggerCount=%d up=%d down=%d val=%d min=%d@%d max=%d@%d base=%d\n",
         currentTimeStr.getCstr(),
         (((1440 + currentDisplayedTime) / 60) % 24),
         (1440 + currentDisplayedTime) % 60,
-        triggerCount, triggeredAt, currentIrReading, minValue, minimumAt, maxValue, maximumAt, irPhotoDiodeBaseLine);
+        triggerCount, upTriggeredAt, downTriggeredAt, currentIrReading, minValue, minimumAt, maxValue, maximumAt, irPhotoDiodeBaseLine);
 #endif
 }
 
