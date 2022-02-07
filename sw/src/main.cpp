@@ -459,13 +459,15 @@ void advance()
             int historyElements = irValues.size();
             if (historyElements > 100) {
                 bool up = currentIrReading - irValues[historyElements - 100] > 50;
+                // small rising edge if at least 60% of highest swing so far but also at least 10 ticks high
+                bool smallUp = 10 * (currentIrReading - irValues[historyElements - 50]) > 6 * max(10, maxValue-minValue);
                 bool down = irValues[historyElements - 100] - currentIrReading > 50;
-                if (up || down) {
+                if (up || down || (!down && smallUp)) {
                     triggerCount++;
                     if (down && downTriggeredAt == -1) {
                         downTriggeredAt = historyElements;
                     }
-                    if (up && upTriggeredAt == -1) {
+                    if ((up || (!down && smallUp)) && upTriggeredAt == -1) {
                         upTriggeredAt = historyElements;
                     }
                     minuteDisplayFlipped = true;
