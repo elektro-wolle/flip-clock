@@ -215,7 +215,7 @@ void handleRoot()
         server.sendContent("<div class='graph'>\n");
         int idx = 0;
         for (uint16_t val : irValues) {
-            bool visible = (downTriggeredAt < 0 && upTriggeredAt < 0)|| (idx > downTriggeredAt - 200 && idx < upTriggeredAt + 200);
+            bool visible = (downTriggeredAt < 0 && upTriggeredAt < 0) || (idx > max(downTriggeredAt, (int16_t)(upTriggeredAt - 100)) - 200 && idx < upTriggeredAt + 200);
             if (!visible) {
                 idx++;
                 continue;
@@ -457,10 +457,10 @@ void advance()
                 maxValue = currentIrReading;
             }
             int historyElements = irValues.size();
-            if (historyElements > 100) {
+            if (historyElements > 300) {
                 bool up = currentIrReading - irValues[historyElements - 100] > 50;
                 // small rising edge if at least 60% of highest swing so far but also at least 10 ticks high
-                bool smallUp = 10 * (currentIrReading - irValues[historyElements - 50]) > 6 * max(10, maxValue-minValue);
+                bool smallUp = 10 * (currentIrReading - irValues[historyElements - 50]) > 6 * max(10, maxValue - minValue);
                 bool down = irValues[historyElements - 100] - currentIrReading > 50;
                 if (up || down || (!down && smallUp)) {
                     triggerCount++;
@@ -477,11 +477,12 @@ void advance()
         }
     }
 
-    if (triggerCount == 0) {
+    if (triggerCount <= 5) {
         globalStats.skipped++;
+    } else {
+        currentDisplayedTime++;
     }
-    currentDisplayedTime++;
-
+    
     for (std::vector<int16_t>::iterator it = irValues.begin(); it != irValues.end(); it++) {
         *it = *it - minValue;
     }
