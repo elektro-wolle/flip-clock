@@ -458,16 +458,18 @@ void advance()
             }
             int historyElements = irValues.size();
             if (historyElements > 300) {
-                bool up = currentIrReading - irValues[historyElements - 100] > 50;
                 // small rising edge if at least 60% of highest swing so far but also at least 10 ticks high
-                bool smallUp = 10 * (currentIrReading - irValues[historyElements - 50]) > 6 * max(10, maxValue - minValue);
+                bool smallUp = downTriggeredAt == -1 && // no falling edge detected so far
+                    stepperMotorSteps > 20 && // at least some steps already done
+                    10 * (currentIrReading - irValues[historyElements - 50]) > 6 * max(10, maxValue - minValue);
+                bool up = smallUp || currentIrReading - irValues[historyElements - 100] > 50;
                 bool down = irValues[historyElements - 100] - currentIrReading > 50;
-                if (up || down || (!down && smallUp)) {
+                if (up || down) {
                     triggerCount++;
                     if (down && downTriggeredAt == -1) {
                         downTriggeredAt = historyElements;
                     }
-                    if ((up || (!down && smallUp)) && upTriggeredAt == -1) {
+                    if (up && upTriggeredAt == -1) {
                         upTriggeredAt = historyElements;
                     }
                     minuteDisplayFlipped = true;
@@ -482,7 +484,7 @@ void advance()
     } else {
         currentDisplayedTime++;
     }
-    
+
     for (std::vector<int16_t>::iterator it = irValues.begin(); it != irValues.end(); it++) {
         *it = *it - minValue;
     }
